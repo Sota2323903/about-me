@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hobby - Souta's Portfolio</title>
+    <meta name="description" content="Soutaの趣味と興味のあることをご紹介します。">
+    
+    <!-- Reset CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/ress/dest/ress.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Original CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="index.html">Souta's Portfolio</a>
+                </h1>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="hobby.html" class="active">Hobby</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h2 class="page-title">My Hobbies</h2>
+            <p class="page-subtitle">趣味と興味のあることをご紹介</p>
+        </div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section class="hobbies">
+        <div class="container">
+            <div class="hobby-grid">
+                <div class="hobby-card">
+                    <div class="hobby-image">
+                        <img src="image/IMG_5103.jpeg" alt="写真撮影">
+                    </div>
+                    <div class="hobby-content">
+                        <h3>📷 Photography</h3>
+                        <p>
+                            風景や日常の美しい瞬間を写真に収めることが好きです。
+                            特に自然光を活かした撮影を心がけています。
+                        </p>
+                        <ul class="hobby-details">
+                            <li>風景写真</li>
+                            <li>ポートレート</li>
+                            <li>街角スナップ</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="hobby-card">
+                    <div class="hobby-image">
+                        <img src="image/IMG_4948.jpeg" alt="読書">
+                    </div>
+                    <div class="hobby-content">
+                        <h3>📚 Reading</h3>
+                        <p>
+                            様々なジャンルの本を読むことで、新しい知識や
+                            視点を得ることを楽しんでいます。
+                        </p>
+                        <ul class="hobby-details">
+                            <li>技術書</li>
+                            <li>小説</li>
+                            <li>デザイン関連書籍</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="hobby-card">
+                    <div class="hobby-image">
+                        <img src="image/IMG_5025.jpeg" alt="音楽">
+                    </div>
+                    <div class="hobby-content">
+                        <h3>🎵 Music</h3>
+                        <p>
+                            音楽鑑賞と楽器演奏を楽しんでいます。
+                            様々なジャンルの音楽に触れることで感性を磨いています。
+                        </p>
+                        <ul class="hobby-details">
+                            <li>ギター演奏</li>
+                            <li>ジャズ鑑賞</li>
+                            <li>クラシック音楽</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mini Game Section -->
+    <section class="mini-game">
+        <div class="container">
+            <h3 class="section-title">🎮 Mini Game</h3>
+            <p class="section-subtitle">簡単な数当てゲームで遊んでみてください！</p>
+            
+            <div class="game-container">
+                <div class="game-board">
+                    <h4>数当てゲーム</h4>
+                    <p>1から100の間の数字を当ててください！</p>
+                    
+                    <div class="game-status">
+                        <p id="attempts">残り試行回数: <span id="attemptsLeft">7</span></p>
+                        <p id="message" class="game-message">さあ、始めましょう！</p>
+                    </div>
+                    
+                    <div class="game-input">
+                        <input type="number" id="guessInput" min="1" max="100" placeholder="1-100の数字を入力">
+                        <button id="guessBtn" class="btn btn-primary">予想する</button>
+                    </div>
+                    
+                    <button id="resetBtn" class="btn btn-secondary" style="display: none;">もう一度遊ぶ</button>
+                    
+                    <div id="history" class="guess-history"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="hobby-gallery">
+        <div class="container">
+            <h3 class="section-title">Hobby Gallery</h3>
+            <p class="section-subtitle">趣味で撮影した写真やスケッチなど</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="image/IMG_4980.jpeg" alt="趣味ギャラリー1">
+                </div>
+                <div class="gallery-item">
+                    <img src="image/IMG_5026.jpeg" alt="趣味ギャラリー2">
+                </div>
+                <div class="gallery-item">
+                    <img src="image/IMG_5041.jpeg" alt="趣味ギャラリー3">
+                </div>
+                <div class="gallery-item">
+                    <img src="image/IMG_4918.jpeg" alt="趣味ギャラリー4">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Souta's Portfolio. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="contact.html">Contact</a>
+                    <a href="about.html">About</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

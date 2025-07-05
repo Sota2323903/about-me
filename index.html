@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Souta's Portfolio - Home</title>
+    <meta name="description" content="Soutaの自己紹介サイトです。プロフィール、趣味、作品などをご紹介します。">
+    
+    <!-- Reset CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/ress/dest/ress.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Original CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="index.html">Souta's Portfolio</a>
+                </h1>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="hobby.html">Hobby</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2 class="hero-title">Welcome to My Portfolio</h2>
+            <p class="hero-subtitle">こんにちは！Soutaです。<br>クリエイティブな世界へようこそ</p>
+            <div class="hero-buttons">
+                <a href="about.html" class="btn btn-primary">About Me</a>
+                <a href="portfolio.html" class="btn btn-secondary">View Works</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="image/IMG_4918.jpeg" alt="メイン画像">
+        </div>
+    </section>
+
+    <!-- Gallery Preview -->
+    <section class="gallery-preview">
+        <div class="container">
+            <h3 class="section-title">Photo Gallery</h3>
+            <p class="section-subtitle">日常の一コマや作品をご紹介</p>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="image/IMG_4948.jpeg" alt="ギャラリー1">
+                </div>
+                <div class="gallery-item">
+                    <img src="image/IMG_4980.jpeg" alt="ギャラリー2">
+                </div>
+                <div class="gallery-item">
+                    <img src="image/IMG_5025.jpeg" alt="ギャラリー3">
+                </div>
+                <div class="gallery-item">
+                    <img src="image/IMG_5026.jpeg" alt="ギャラリー4">
+                </div>
+            </div>
+            <div class="gallery-more">
+                <a href="portfolio.html" class="btn btn-outline">View All Works</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Info -->
+    <section class="quick-info">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">🎨</div>
+                    <h4>Creative</h4>
+                    <p>クリエイティブな活動と表現を大切にしています</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">📚</div>
+                    <h4>Learning</h4>
+                    <p>常に新しいことを学び、成長し続けています</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">🤝</div>
+                    <h4>Connect</h4>
+                    <p>人とのつながりを大切にしています</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Souta's Portfolio. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="contact.html">Contact</a>
+                    <a href="about.html">About</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
