@@ -21,11 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeContactForm();
     }
     
-    // ポートフォリオフィルターの初期化
-    if (document.querySelector('.filter-btn')) {
-        initializePortfolioFilter();
-    }
-    
     // FAQの初期化
     if (document.querySelector('.faq-question')) {
         initializeFAQ();
@@ -38,19 +33,31 @@ document.addEventListener('DOMContentLoaded', function() {
 // モバイルメニューの初期化
 function initMobileMenu() {
     const menuToggle = document.getElementById('menuToggle');
-    const navList = document.querySelector('.nav-list');
+    const nav = document.querySelector('.nav');
     
-    if (menuToggle && navList) {
+    if (menuToggle && nav) {
         menuToggle.addEventListener('click', function() {
-            navList.classList.toggle('active');
+            nav.classList.toggle('mobile-nav-open');
+            
+            // ハンバーガーメニューのアニメーション
+            menuToggle.classList.toggle('active');
         });
         
         // メニュー項目をクリックしたときにメニューを閉じる
         const navLinks = document.querySelectorAll('.nav-list a');
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
-                navList.classList.remove('active');
+                nav.classList.remove('mobile-nav-open');
+                menuToggle.classList.remove('active');
             });
+        });
+        
+        // 画面外をクリックしたときにメニューを閉じる
+        document.addEventListener('click', function(e) {
+            if (!nav.contains(e.target) && !menuToggle.contains(e.target)) {
+                nav.classList.remove('mobile-nav-open');
+                menuToggle.classList.remove('active');
+            }
         });
     }
 }
@@ -315,40 +322,6 @@ function showSuccessMessage() {
                 document.body.removeChild(successMessage);
             }, 300);
         }
-    });
-}
-
-// ポートフォリオフィルターの初期化
-function initializePortfolioFilter() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const portfolioItems = document.querySelectorAll('.portfolio-item');
-    
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const filter = this.getAttribute('data-filter');
-            
-            // アクティブボタンの更新
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            
-            // アイテムのフィルタリング
-            portfolioItems.forEach(item => {
-                const category = item.getAttribute('data-category');
-                if (filter === 'all' || category === filter) {
-                    item.style.display = 'block';
-                    setTimeout(() => {
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
-                    }, 100);
-                } else {
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
-                        item.style.display = 'none';
-                    }, 300);
-                }
-            });
-        });
     });
 }
 
