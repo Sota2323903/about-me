@@ -20,20 +20,49 @@ a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
 /* ヘッダー */
 .header {
     background: #fff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
+    height: 60px;
 }
-.header-content { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
-.logo a { font-size: 1.5rem; font-weight: 700; color: #2c3e50; }
+.header-content { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0.5rem 0;
+    height: 100%;
+}
+.logo a { 
+    font-size: 1.2rem; 
+    font-weight: 600; 
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+}
 
 /* ナビゲーション */
-.nav-list { display: flex; list-style: none; margin: 0; padding: 0; gap: 2rem; }
-.nav-list a { color: #666; font-weight: 500; transition: color 0.3s; }
-.nav-list a:hover, .nav-list a.active { color: #3498db; }
+.nav-list { 
+    display: flex; 
+    list-style: none; 
+    margin: 0; 
+    padding: 0; 
+    gap: 1.5rem; 
+}
+.nav-list a { 
+    color: #666; 
+    font-weight: 500; 
+    font-size: 0.9rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+.nav-list a:hover, .nav-list a.active { 
+    color: #3498db; 
+    background: rgba(52, 152, 219, 0.1);
+}
 
 /* モバイルメニュー */
 .menu-toggle {
@@ -42,17 +71,19 @@ a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.5rem;
+    padding: 0.3rem;
+    border-radius: 4px;
 }
 .menu-toggle span {
-    width: 25px;
-    height: 3px;
+    width: 20px;
+    height: 2px;
     background: #333;
-    margin: 3px 0;
+    margin: 2px 0;
     transition: 0.3s;
+    border-radius: 2px;
     transform-origin: center;
 }
-.menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+.menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
 .menu-toggle.active span:nth-child(2) { opacity: 0; }
 .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
@@ -65,12 +96,165 @@ a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
 }
-.page-header { min-height: auto; text-align: center; }
+.page-header { 
+    min-height: auto; 
+    text-align: center; 
+    padding: 80px 20px 40px;
+}
 .hero-content { flex: 1; max-width: 600px; }
-.hero-title, .page-title { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.2; }
-.hero-subtitle, .page-subtitle { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; }
+.hero-title, .page-title { 
+    font-size: 2.2rem; 
+    font-weight: 600; 
+    margin-bottom: 0.5rem; 
+    line-height: 1.3; 
+}
+.hero-subtitle, .page-subtitle { 
+    font-size: 1rem; 
+    margin-bottom: 1.5rem; 
+    opacity: 0.9; 
+}
 .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
-.hero-image { flex: 1; max-width: 500px; margin-left: 2rem; }
+.hero-image { 
+    flex: 1; 
+    max-width: 500px; 
+    margin-left: 2rem; 
+    position: relative;
+}
+
+/* Hero Slideshow */
+.hero-slideshow {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    height: 400px;
+    perspective: 1000px;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: rotateY(90deg) scale(0.8);
+    transform-origin: center;
+    transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    backface-visibility: hidden;
+}
+
+.slide.active {
+    opacity: 1;
+    transform: rotateY(0deg) scale(1);
+    z-index: 2;
+}
+
+.slide.prev {
+    transform: rotateY(-90deg) scale(0.8);
+    opacity: 0.3;
+}
+
+.slide.next {
+    transform: rotateY(90deg) scale(0.8);
+    opacity: 0.3;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    filter: brightness(1) contrast(1.1);
+    transition: filter 0.3s ease;
+}
+
+/* Slideshow Controls */
+.slideshow-controls {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.prev-btn, .next-btn {
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    color: #333;
+    font-weight: bold;
+}
+
+.prev-btn:hover, .next-btn:hover {
+    background: rgba(52, 152, 219, 0.95);
+    color: white;
+    transform: scale(1.15) rotate(360deg);
+    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+}
+
+.prev-btn:active, .next-btn:active {
+    transform: scale(0.95);
+}
+
+/* Slideshow Indicators */
+.slideshow-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 3;
+}
+
+.indicator {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    position: relative;
+}
+
+.indicator.active {
+    background: rgba(52, 152, 219, 1);
+    border-color: rgba(255, 255, 255, 1);
+    transform: scale(1.3);
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.6);
+}
+
+.indicator:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.9);
+    transform: scale(1.1);
+    border-color: rgba(52, 152, 219, 0.8);
+}
+
+/* アニメーション用の追加エフェクト */
+.slide.active img {
+    filter: brightness(1.05) contrast(1.1) saturate(1.1);
+}
+
+.slide:not(.active) img {
+    filter: brightness(0.8) contrast(0.9);
+}
+
 .hero-image img { border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
 
 /* ボタン */
@@ -145,15 +329,11 @@ a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
 .game-board h4 { color: #3498db; margin-bottom: 1rem; }
 .game-status { margin: 1.5rem 0; }
 .game-message { font-weight: 600; padding: 1rem; border-radius: 10px; margin: 1rem 0; }
-.game-message.success { background: #d4edda; color: #155724; }
-.game-message.error { background: #f8d7da; color: #721c24; }
-.game-message.hint { background: #fff3cd; color: #856404; }
 .game-input { display: flex; gap: 1rem; margin: 1.5rem 0; justify-content: center; align-items: center; }
 .game-input input { padding: 0.8rem; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem; width: 150px; text-align: center; }
 .game-input input:focus { outline: none; border-color: #3498db; }
 .guess-history { margin-top: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 10px; min-height: 60px; }
 .guess-history h5 { margin: 0 0 0.5rem 0; color: #666; }
-.guess-item { display: inline-block; background: #e9ecef; color: #333; padding: 0.3rem 0.6rem; margin: 0.2rem; border-radius: 15px; font-size: 0.9rem; }
 
 /* お問い合わせ・フォーム */
 .contact-form-section, .profile, .skills, .timeline, .contact-intro, .academic-info, .future-goals, .faq, .privacy-section { padding: 80px 20px; }
@@ -265,57 +445,6 @@ a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
 
 .game-developer { margin-top: 2rem; font-size: 0.95rem; opacity: 0.9; }
 
-.game-image-placeholder {
-    aspect-ratio: 16/9;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255,255,255,0.1);
-    border: 2px dashed rgba(255,255,255,0.3);
-}
-
-.nier-placeholder {
-    background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 50%, #2a2a2a 100%) !important;
-    color: #fff !important;
-}
-
-.overwatch-placeholder {
-    background: linear-gradient(135deg, #f99e1a 0%, #ff6b35 50%, #e63946 100%) !important;
-    color: #fff !important;
-}
-
-.valorant-placeholder {
-    background: linear-gradient(135deg, #ff4655 0%, #ff6b35 50%, #0f3460 100%) !important;
-    color: #fff !important;
-}
-
-.placeholder-content { 
-    text-align: center; 
-    color: white !important;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7) !important;
-}
-
-.placeholder-icon { 
-    font-size: 4rem; 
-    display: block; 
-    margin-bottom: 1rem; 
-}
-
-.placeholder-content p { 
-    font-size: 1.5rem; 
-    font-weight: bold; 
-    margin-bottom: 0.5rem; 
-    color: white !important;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7) !important;
-}
-
-.placeholder-content small { 
-    opacity: 0.9; 
-    color: white !important;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7) !important;
-}
-
 /* Game Images */
 .game-image {
     aspect-ratio: 16/9;
@@ -368,6 +497,28 @@ a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
 .feature-item p { margin: 0; font-size: 0.95rem; }
 
 .game-summary { font-size: 1.1rem; text-align: center; margin-top: 2rem; padding: 1.5rem; background: rgba(255,255,255,0.15); border-radius: 15px; }
+
+/* Character Grid */
+.character-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+.character-card { background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; text-align: center; }
+
+/* Philosophy Questions */
+.philosophy-questions { list-style: none; padding: 0; margin: 1.5rem 0; }
+.philosophy-questions li { margin-bottom: 0.8rem; padding: 0.5rem; background: rgba(255,255,255,0.1); border-radius: 5px; }
+
+/* Beginner Reactions */
+.beginner-reactions { list-style: none; padding: 0; margin: 1.5rem 0; }
+.beginner-reactions li { margin-bottom: 0.8rem; padding: 0.8rem; background: rgba(255,255,255,0.1); border-radius: 5px; }
+
+/* Final Message */
+.final-message { font-size: 1.1rem; text-align: center; margin: 2rem 0; padding: 1.5rem; background: rgba(255,255,255,0.1); border-radius: 10px; }
+
+/* Link Icons */
+.link-icon { font-size: 1.2rem; margin-right: 0.5rem; }
+
+/* Button States */
+.btn-text { display: inline; }
+.btn-loading { display: none; }
 
 .gaming-philosophy { padding: 80px 20px; background: #f8f9fa; }
 .philosophy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
@@ -449,6 +600,16 @@ a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
     .hero-subtitle, .page-subtitle { font-size: 1rem; }
     .hero-content { text-align: center; }
     .hero-image { margin-left: 0; margin-top: 2rem; }
+    .hero-slideshow { height: 300px; perspective: 800px; }
+    .slideshow-controls { padding: 0 5px; }
+    .prev-btn, .next-btn { 
+        width: 42px; 
+        height: 42px; 
+        font-size: 1.1rem; 
+    }
+    .prev-btn:hover, .next-btn:hover {
+        transform: scale(1.1) rotate(180deg);
+    }
     .hobby-card { grid-template-columns: 1fr; text-align: center; }
     .hobby-card:nth-child(even) { direction: ltr; }
     .hobby-image { order: -1; }
@@ -498,6 +659,24 @@ a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
     .hero-subtitle, .page-subtitle { font-size: 0.95rem; }
     .hero, .hobbies, .mini-game, .hobby-gallery, .contact-form-section, .skills, .timeline, .contact-intro, .academic-info, .future-goals, .faq, .privacy-section, .games-intro, .game-section, .gaming-philosophy, .game-cta { padding: 60px 10px; }
     .page-header { padding: 100px 10px 60px; }
+    .hero-slideshow { height: 250px; perspective: 600px; }
+    .slideshow-indicators { bottom: 15px; }
+    .indicator { 
+        width: 12px; 
+        height: 12px; 
+        border-width: 1px;
+    }
+    .indicator.active {
+        transform: scale(1.2);
+    }
+    .prev-btn, .next-btn { 
+        width: 38px; 
+        height: 38px; 
+        font-size: 1rem; 
+    }
+    .prev-btn:hover, .next-btn:hover {
+        transform: scale(1.05) rotate(90deg);
+    }
     .hobby-card { padding: 1.5rem; gap: 1.5rem; }
     .hobby-content h3 { font-size: 1.3rem; }
     .hobby-image img { height: 200px; }
@@ -525,8 +704,6 @@ a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
     .game-title { font-size: 1.8rem; }
     .game-tags { justify-content: center; }
     .game-catchphrase { font-size: 1.1rem; padding: 1rem; }
-    .placeholder-icon { font-size: 3rem; }
-    .placeholder-content p { font-size: 1.3rem; }
     .strategy-item { padding: 0.6rem; font-size: 0.9rem; }
     .agent-card { padding: 0.8rem; }
     .feature-item { padding: 1rem; }
@@ -543,4 +720,284 @@ a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
     .gallery-item img { height: 150px; }
     .btn { padding: 8px 16px; font-size: 0.85rem; }
     .contact-icon { font-size: 1.3rem; width: 40px; }
+}
+
+/* ==========================================
+   ページ別テーマスタイル
+========================================== */
+
+/* ホームページ (ブルーテーマ) */
+.page-home {
+    --primary-color: #3498db;
+    --secondary-color: #2980b9;
+    --accent-color: #85c1e9;
+}
+
+.page-home .header {
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    box-shadow: 0 2px 15px rgba(52, 152, 219, 0.3);
+}
+
+.page-home .header .logo a,
+.page-home .nav-list a {
+    color: white;
+}
+
+.page-home .nav-list a:hover,
+.page-home .nav-list a.active {
+    color: #85c1e9;
+    background: rgba(133, 193, 233, 0.2);
+}
+
+.page-home .hero {
+    background: linear-gradient(135deg, #667db6 0%, #0082c8 100%);
+    color: white;
+}
+
+.page-home .btn-primary {
+    background: #2980b9;
+    border-color: #2980b9;
+}
+
+.page-home .btn-primary:hover {
+    background: #1f5f8b;
+    transform: translateY(-2px);
+}
+
+/* 自己紹介ページ (グリーンテーマ) */
+.page-about {
+    --primary-color: #27ae60;
+    --secondary-color: #229954;
+    --accent-color: #58d68d;
+}
+
+.page-about .header {
+    background: linear-gradient(90deg, #27ae60, #229954);
+    box-shadow: 0 2px 15px rgba(39, 174, 96, 0.3);
+}
+
+.page-about .header .logo a,
+.page-about .nav-list a {
+    color: white;
+}
+
+.page-about .nav-list a:hover,
+.page-about .nav-list a.active {
+    color: #58d68d;
+    background: rgba(88, 214, 141, 0.2);
+}
+
+.page-about .page-header {
+    background: linear-gradient(135deg, #27ae60, #229954);
+    color: white;
+}
+
+.page-about .btn-primary {
+    background: #229954;
+    border-color: #229954;
+}
+
+.page-about .profile-stats .stat-number {
+    color: #27ae60;
+}
+
+.page-about .skill-card:hover {
+    border-color: #27ae60;
+    transform: translateY(-5px);
+}
+
+/* 趣味ページ (オレンジテーマ) */
+.page-hobby {
+    --primary-color: #f39c12;
+    --secondary-color: #e67e22;
+    --accent-color: #f8c471;
+}
+
+.page-hobby .header {
+    background: linear-gradient(90deg, #f39c12, #e67e22);
+    box-shadow: 0 2px 15px rgba(243, 156, 18, 0.3);
+}
+
+.page-hobby .header .logo a,
+.page-hobby .nav-list a {
+    color: white;
+}
+
+.page-hobby .nav-list a:hover,
+.page-hobby .nav-list a.active {
+    color: #f8c471;
+    background: rgba(248, 196, 113, 0.2);
+}
+
+.page-hobby .page-header {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+}
+
+.page-hobby .btn-primary {
+    background: #e67e22;
+    border-color: #e67e22;
+}
+
+.page-hobby .hobby-card {
+    border-left: 4px solid #f39c12;
+}
+
+.page-hobby .hobby-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(243, 156, 18, 0.2);
+}
+
+.page-hobby .game-board {
+    border: 2px solid #f39c12;
+    background: linear-gradient(135deg, #fff7e6, #fef2e0);
+}
+
+/* ゲームページ (パープルテーマ) */
+.page-games {
+    --primary-color: #8e44ad;
+    --secondary-color: #7d3c98;
+    --accent-color: #bb8fce;
+}
+
+.page-games .header {
+    background: linear-gradient(90deg, #8e44ad, #7d3c98);
+    box-shadow: 0 2px 15px rgba(142, 68, 173, 0.3);
+}
+
+.page-games .header .logo a,
+.page-games .nav-list a {
+    color: white;
+}
+
+.page-games .nav-list a:hover,
+.page-games .nav-list a.active {
+    color: #bb8fce;
+    background: rgba(187, 143, 206, 0.2);
+}
+
+.page-games .page-header {
+    background: linear-gradient(135deg, #8e44ad, #7d3c98);
+    color: white;
+}
+
+.page-games .btn-primary {
+    background: #7d3c98;
+    border-color: #7d3c98;
+}
+
+.page-games .game-section.nier-section {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+}
+
+.page-games .game-section.overwatch-section {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+}
+
+.page-games .game-section.valorant-section {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+}
+
+.page-games .tag {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* お問い合わせページ (レッドテーマ) */
+.page-contact {
+    --primary-color: #e74c3c;
+    --secondary-color: #c0392b;
+    --accent-color: #f1948a;
+}
+
+.page-contact .header {
+    background: linear-gradient(90deg, #e74c3c, #c0392b);
+    box-shadow: 0 2px 15px rgba(231, 76, 60, 0.3);
+}
+
+.page-contact .header .logo a,
+.page-contact .nav-list a {
+    color: white;
+}
+
+.page-contact .nav-list a:hover,
+.page-contact .nav-list a.active {
+    color: #f1948a;
+    background: rgba(241, 148, 138, 0.2);
+}
+
+.page-contact .page-header {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+}
+
+.page-contact .btn-primary {
+    background: #c0392b;
+    border-color: #c0392b;
+}
+
+.page-contact .contact-item {
+    border-left: 4px solid #e74c3c;
+    padding-left: 1rem;
+}
+
+.page-contact .form input:focus,
+.page-contact .form textarea:focus,
+.page-contact .form select:focus {
+    border-color: #e74c3c;
+    box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.2);
+}
+
+.page-contact .faq-item:hover {
+    border-left-color: #e74c3c;
+}
+
+/* 各ページ共通のアニメーション強化 */
+.page-home .hero-content,
+.page-about .profile-content,
+.page-hobby .hobby-card,
+.page-games .game-content,
+.page-contact .contact-content {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ページ固有のホバーエフェクト */
+.page-home .info-card:hover {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-left: 4px solid #3498db;
+}
+
+.page-about .academic-card:hover {
+    background: linear-gradient(135deg, #f8fff8, #e8f8e8);
+    border-left: 4px solid #27ae60;
+}
+
+.page-hobby .gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(243, 156, 18, 0.3);
+}
+
+.page-games .philosophy-card:hover {
+    background: linear-gradient(135deg, #f8f4ff, #f0eaff);
+    border-left: 4px solid #8e44ad;
+}
+
+.page-contact .highlight-item:hover {
+    background: linear-gradient(135deg, #fff5f5, #fee);
+    border-left: 4px solid #e74c3c;
 }
