@@ -1,5 +1,37 @@
 @charset "UTF-8";
 
+/* 背景スライドショー */
+.background-slideshow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.background-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+}
+
+.background-slide.active {
+    opacity: 0.3;
+}
+
+.background-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(1px);
+}
+
 /* 基本設定 */
 * { box-sizing: border-box; }
 html { font-size: 16px; scroll-behavior: smooth; }
@@ -7,7 +39,7 @@ body {
     font-family: 'Noto Sans JP', sans-serif;
     line-height: 1.7;
     color: #333;
-    background: #fff;
+    background: transparent;
     margin: 0;
     overflow-x: hidden;
 }
@@ -93,7 +125,7 @@ a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
     align-items: center;
     min-height: 100vh;
     padding: 120px 20px 80px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: rgba(102, 126, 234, 0.8);
     color: white;
 }
 .page-header { 
@@ -283,7 +315,9 @@ a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
 
 /* ギャラリー・趣味 */
 .gallery-preview, .hobby-gallery, .hobbies { padding: 80px 20px; }
-.hobby-gallery { background: #f8f9fa; }
+.gallery-preview { background: rgba(248, 249, 250, 0.9); }
+.quick-info { background: rgba(255, 255, 255, 0.9); padding: 80px 20px; }
+.hobby-gallery { background: rgba(248, 249, 250, 0.9); }
 .gallery-grid, .hobby-grid {
     display: grid;
     gap: 2rem;
@@ -315,7 +349,7 @@ a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
 .hobby-details li::before { content: "✓ "; color: #3498db; font-weight: bold; }
 
 /* ミニゲーム */
-.mini-game { padding: 80px 20px; background: #f8f9fa; }
+.mini-game { padding: 80px 20px; background: rgba(248, 249, 250, 0.9); }
 .game-container { display: flex; justify-content: center; margin-top: 2rem; }
 .game-board {
     background: white;
@@ -337,7 +371,7 @@ a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
 
 /* お問い合わせ・フォーム */
 .contact-form-section, .profile, .skills, .timeline, .contact-intro, .academic-info, .future-goals, .faq, .privacy-section { padding: 80px 20px; }
-.skills { background: #f8f9fa; }
+.skills { background: rgba(248, 249, 250, 0.9); }
 .contact-content, .profile-content { display: grid; gap: 3rem; align-items: start; }
 .contact-content { grid-template-columns: 1fr 1fr; }
 .profile-content { grid-template-columns: 1fr 2fr; align-items: center; }
@@ -581,7 +615,7 @@ a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
 .timeline-content-item h4 { margin-bottom: 0.5rem; color: #2c3e50; }
 
 /* フッター */
-.footer { background: #2c3e50; color: white; padding: 40px 20px; }
+.footer { background: rgba(44, 62, 80, 0.9); color: white; padding: 40px 20px; }
 .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
 .footer-links { display: flex; gap: 2rem; }
 .footer-links a { color: white; opacity: 0.8; transition: opacity 0.3s; }

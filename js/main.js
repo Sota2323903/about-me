@@ -4,9 +4,17 @@ let attemptsLeft = 7;
 let guessHistory = [];
 let gameActive = true;
 
+// 背景スライドショー変数
+let backgroundSlides = [];
+let currentBackgroundSlide = 0;
+let backgroundInterval;
+
 // DOM読み込み完了後の処理
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Welcome to Souta\'s Portfolio!');
+    
+    // 背景スライドショーの初期化
+    initializeBackgroundSlideshow();
     
     // モバイルメニューの初期化
     initMobileMenu();
@@ -65,6 +73,63 @@ function initMobileMenu() {
             }
         });
     }
+}
+
+// 背景スライドショーの初期化
+function initializeBackgroundSlideshow() {
+    backgroundSlides = document.querySelectorAll('.background-slide');
+    
+    if (backgroundSlides.length > 0) {
+        // 画像をランダムに並び替え
+        const slideArray = Array.from(backgroundSlides);
+        shuffleArray(slideArray);
+        
+        // ランダムな間隔（3-7秒）で背景を切り替え
+        startBackgroundSlideshow();
+    }
+}
+
+// 配列をシャッフルする関数
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+// 背景スライドショーを開始
+function startBackgroundSlideshow() {
+    // 初回は即座に実行
+    showNextBackgroundSlide();
+    
+    // ランダムな間隔で継続的に実行
+    backgroundInterval = setInterval(() => {
+        showNextBackgroundSlide();
+        // 次の間隔もランダムに設定（3-7秒）
+        clearInterval(backgroundInterval);
+        const randomInterval = Math.random() * 4000 + 3000; // 3000-7000ms
+        backgroundInterval = setInterval(showNextBackgroundSlide, randomInterval);
+    }, Math.random() * 4000 + 3000);
+}
+
+// 次の背景スライドを表示
+function showNextBackgroundSlide() {
+    if (backgroundSlides.length === 0) return;
+    
+    // 現在のスライドを非アクティブに
+    backgroundSlides[currentBackgroundSlide].classList.remove('active');
+    
+    // 次のスライドをランダムに選択
+    let nextSlide;
+    do {
+        nextSlide = Math.floor(Math.random() * backgroundSlides.length);
+    } while (nextSlide === currentBackgroundSlide && backgroundSlides.length > 1);
+    
+    currentBackgroundSlide = nextSlide;
+    
+    // 新しいスライドをアクティブに
+    backgroundSlides[currentBackgroundSlide].classList.add('active');
 }
 
 // 数当てゲームの初期化
