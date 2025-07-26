@@ -1,440 +1,369 @@
-// 数当てゲーム変数
-let secretNumber = Math.floor(Math.random() * 100) + 1;
-let attemptsLeft = 7;
-let guessHistory = [];
-let gameActive = true;
+// 背景画像のリスト
+const backgroundImages = [
+    'image/IMG_4918.jpeg',
+    'image/IMG_4948.jpeg',
+    'image/IMG_4980.jpeg',
+    'image/IMG_5025.jpeg',
+    'image/IMG_5026.jpeg',
+    'image/IMG_5041.jpeg',
+    'image/IMG_5103.jpeg'
+];
 
-// 背景スライドショー変数
-let backgroundSlides = [];
-let currentBackgroundSlide = 0;
-let backgroundInterval;
+// 現在の背景画像インデックス
+let currentImageIndex = 0;
 
-// DOM読み込み完了後の処理
+// DOM要素の取得
+const backgroundSlider = document.getElementById('background-slider');
+const navLinks = document.querySelectorAll('.nav-link');
+const sections = document.querySelectorAll('.section');
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+const navbar = document.querySelector('.navbar');
+const contactForm = document.getElementById('contactForm');
+
+// 初期化
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Welcome to Souta\'s Portfolio!');
+    // 最初の背景画像を設定
+    setBackgroundImage();
     
-    // 背景スライドショーの初期化
-    initializeBackgroundSlideshow();
+    // 背景画像を定期的に変更（5秒間隔）
+    setInterval(changeBackgroundImage, 5000);
     
-    // モバイルメニューの初期化
-    initMobileMenu();
+    // ナビゲーションイベントリスナーを設定
+    setupNavigation();
     
-    // ゲーム機能の初期化（hobbyページのみ）
-    if (document.getElementById('guessBtn')) {
-        initializeGame();
-    }
+    // ハンバーガーメニューのイベントリスナーを設定
+    setupHamburgerMenu();
     
-    // お問い合わせフォームの初期化
-    if (document.getElementById('contactForm')) {
-        initializeContactForm();
-    }
+    // スクロールイベントリスナーを設定
+    setupScrollEvents();
     
-    // FAQの初期化
-    if (document.querySelector('.faq-question')) {
-        initializeFAQ();
-    }
+    // フォームのイベントリスナーを設定
+    setupContactForm();
     
-    // スムーススクロールの実装
-    initializeSmoothScroll();
+    // 初期ページを表示
+    showSection('home');
 });
 
-// モバイルメニューの初期化
-function initMobileMenu() {
-    const menuToggle = document.getElementById('menuToggle');
-    const nav = document.querySelector('.nav');
-    
-    if (menuToggle && nav) {
-        menuToggle.addEventListener('click', function() {
-            nav.classList.toggle('mobile-nav-open');
-            
-            // ハンバーガーメニューのアニメーション
-            menuToggle.classList.toggle('active');
-        });
+// 背景画像を設定する関数
+function setBackgroundImage() {
+    const randomIndex = Math.floor(Math.random() * backgroundImages.length);
+    backgroundSlider.style.backgroundImage = `url('${backgroundImages[randomIndex]}')`;
+    currentImageIndex = randomIndex;
+}
+
+// 背景画像を変更する関数
+function changeBackgroundImage() {
+    // ホームページが表示されている時のみ背景を変更
+    const homeSection = document.getElementById('home');
+    if (homeSection.classList.contains('active')) {
+        let nextIndex;
+        do {
+            nextIndex = Math.floor(Math.random() * backgroundImages.length);
+        } while (nextIndex === currentImageIndex);
         
-        // メニュー項目をクリックしたときにメニューを閉じる
-        const navLinks = document.querySelectorAll('.nav-list a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                nav.classList.remove('mobile-nav-open');
-                menuToggle.classList.remove('active');
-            });
-        });
+        backgroundSlider.style.opacity = '0';
         
-        // 画面外をクリックしたときにメニューを閉じる
-        document.addEventListener('click', function(e) {
-            if (!nav.contains(e.target) && !menuToggle.contains(e.target)) {
-                nav.classList.remove('mobile-nav-open');
-                menuToggle.classList.remove('active');
-            }
-        });
-    }
-}
-
-// 背景スライドショーの初期化
-function initializeBackgroundSlideshow() {
-    backgroundSlides = document.querySelectorAll('.background-slide');
-    
-    if (backgroundSlides.length > 0) {
-        // 画像をランダムに並び替え
-        const slideArray = Array.from(backgroundSlides);
-        shuffleArray(slideArray);
-        
-        // ランダムな間隔（3-7秒）で背景を切り替え
-        startBackgroundSlideshow();
-    }
-}
-
-// 配列をシャッフルする関数
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-}
-
-// 背景スライドショーを開始
-function startBackgroundSlideshow() {
-    // 初回は即座に実行
-    showNextBackgroundSlide();
-    
-    // ランダムな間隔で継続的に実行
-    backgroundInterval = setInterval(() => {
-        showNextBackgroundSlide();
-        // 次の間隔もランダムに設定（3-7秒）
-        clearInterval(backgroundInterval);
-        const randomInterval = Math.random() * 4000 + 3000; // 3000-7000ms
-        backgroundInterval = setInterval(showNextBackgroundSlide, randomInterval);
-    }, Math.random() * 4000 + 3000);
-}
-
-// 次の背景スライドを表示
-function showNextBackgroundSlide() {
-    if (backgroundSlides.length === 0) return;
-    
-    // 現在のスライドを非アクティブに
-    backgroundSlides[currentBackgroundSlide].classList.remove('active');
-    
-    // 次のスライドをランダムに選択
-    let nextSlide;
-    do {
-        nextSlide = Math.floor(Math.random() * backgroundSlides.length);
-    } while (nextSlide === currentBackgroundSlide && backgroundSlides.length > 1);
-    
-    currentBackgroundSlide = nextSlide;
-    
-    // 新しいスライドをアクティブに
-    backgroundSlides[currentBackgroundSlide].classList.add('active');
-}
-
-// 数当てゲームの初期化
-function initializeGame() {
-    const guessBtn = document.getElementById('guessBtn');
-    const resetBtn = document.getElementById('resetBtn');
-    const guessInput = document.getElementById('guessInput');
-    
-    if (guessBtn && resetBtn && guessInput) {
-        guessBtn.addEventListener('click', makeGuess);
-        resetBtn.addEventListener('click', resetGame);
-        
-        // エンターキーでも予想できるようにする
-        guessInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                makeGuess();
-            }
-        });
-    }
-}
-
-// 予想処理
-function makeGuess() {
-    if (!gameActive) return;
-    
-    const guessInput = document.getElementById('guessInput');
-    const guess = parseInt(guessInput.value);
-    
-    // 入力値の検証
-    if (isNaN(guess) || guess < 1 || guess > 100) {
-        updateMessage('1から100の間の数字を入力してください！', 'error');
-        return;
-    }
-    
-    // 履歴に追加
-    guessHistory.push(guess);
-    attemptsLeft--;
-    
-    updateAttemptsDisplay();
-    updateHistory();
-    
-    if (guess === secretNumber) {
-        // 正解
-        updateMessage(`🎉 正解！答えは ${secretNumber} でした！`, 'success');
-        endGame(true);
-    } else if (attemptsLeft === 0) {
-        // ゲームオーバー
-        updateMessage(`😢 ゲームオーバー！答えは ${secretNumber} でした。`, 'error');
-        endGame(false);
-    } else {
-        // ヒントを表示
-        const hint = guess < secretNumber ? '大きい数字です' : '小さい数字です';
-        updateMessage(`${hint}　残り ${attemptsLeft} 回`, 'hint');
-    }
-    
-    guessInput.value = '';
-}
-
-// メッセージ更新
-function updateMessage(text, type) {
-    const messageElement = document.getElementById('message');
-    if (messageElement) {
-        messageElement.textContent = text;
-        messageElement.className = `game-message ${type}`;
-    }
-}
-
-// 試行回数表示更新
-function updateAttemptsDisplay() {
-    const attemptsElement = document.getElementById('attemptsLeft');
-    if (attemptsElement) {
-        attemptsElement.textContent = attemptsLeft;
-    }
-}
-
-// 履歴表示更新
-function updateHistory() {
-    const historyElement = document.getElementById('history');
-    if (historyElement) {
-        historyElement.innerHTML = '<h5>予想履歴:</h5>' + 
-            guessHistory.map(guess => `<span class="guess-item">${guess}</span>`).join(' ');
-    }
-}
-
-// ゲーム終了処理
-function endGame(won) {
-    gameActive = false;
-    const guessBtn = document.getElementById('guessBtn');
-    const guessInput = document.getElementById('guessInput');
-    const resetBtn = document.getElementById('resetBtn');
-    
-    if (guessBtn) guessBtn.style.display = 'none';
-    if (guessInput) guessInput.disabled = true;
-    if (resetBtn) resetBtn.style.display = 'inline-block';
-}
-
-// ゲームリセット
-function resetGame() {
-    secretNumber = Math.floor(Math.random() * 100) + 1;
-    attemptsLeft = 7;
-    guessHistory = [];
-    gameActive = true;
-    
-    const guessBtn = document.getElementById('guessBtn');
-    const guessInput = document.getElementById('guessInput');
-    const resetBtn = document.getElementById('resetBtn');
-    const historyElement = document.getElementById('history');
-    
-    if (guessBtn) guessBtn.style.display = 'inline-block';
-    if (guessInput) {
-        guessInput.disabled = false;
-        guessInput.value = '';
-    }
-    if (resetBtn) resetBtn.style.display = 'none';
-    if (historyElement) historyElement.innerHTML = '';
-    
-    updateAttemptsDisplay();
-    updateMessage('さあ、始めましょう！', '');
-}
-
-// お問い合わせフォームの初期化
-function initializeContactForm() {
-    const form = document.getElementById('contactForm');
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(form);
-            const firstName = formData.get('firstName');
-            const lastName = formData.get('lastName');
-            const email = formData.get('email');
-            const inquiryType = formData.get('inquiryType');
-            const subject = formData.get('subject');
-            const message = formData.get('message');
-            const privacy = formData.get('privacy');
-            
-            // 必須項目のチェック
-            if (!firstName || !lastName || !email || !inquiryType || !subject || !message || !privacy) {
-                alert('すべての必須項目を入力してください。');
-                return;
-            }
-            
-            // メールアドレスの簡単な検証
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('正しいメールアドレスを入力してください。');
-                return;
-            }
-            
-            // 送信処理のシミュレーション
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const btnText = submitBtn.querySelector('.btn-text');
-            const btnLoading = submitBtn.querySelector('.btn-loading');
-            
-            // ボタンの状態を変更
-            submitBtn.disabled = true;
-            btnText.style.display = 'none';
-            btnLoading.style.display = 'inline';
-            
-            // 2秒後に完了メッセージを表示
-            setTimeout(() => {
-                const fullName = `${firstName} ${lastName}`;
-                const inquiryTypeText = getInquiryTypeText(inquiryType);
-                
-                alert(`お問い合わせありがとうございます、${fullName}さん！\n\n` +
-                      `【お問い合わせ内容】\n` +
-                      `種別: ${inquiryTypeText}\n` +
-                      `件名: ${subject}\n\n` +
-                      `内容を確認いたしました。\n` +
-                      `24時間以内にご返信させていただきます。\n\n` +
-                      `（このサイトはデモなので、実際のメール送信は行われません）`);
-                
-                // フォームをリセット
-                form.reset();
-                
-                // ボタンの状態を元に戻す
-                submitBtn.disabled = false;
-                btnText.style.display = 'inline';
-                btnLoading.style.display = 'none';
-                
-                // 成功メッセージを表示
-                showSuccessMessage();
-                
-            }, 2000);
-        });
-    }
-}
-
-// お問い合わせ種別のテキストを取得
-function getInquiryTypeText(value) {
-    const types = {
-        'web-development': 'Web制作・開発',
-        'design': 'デザイン',
-        'photography': '写真撮影',
-        'collaboration': 'コラボレーション',
-        'consultation': '相談・アドバイス',
-        'other': 'その他'
-    };
-    return types[value] || value;
-}
-
-// 成功メッセージを表示
-function showSuccessMessage() {
-    const successMessage = document.createElement('div');
-    successMessage.className = 'success-message';
-    successMessage.innerHTML = `
-        <div class="success-content">
-            <div class="success-icon">✅</div>
-            <h4>送信完了</h4>
-            <p>お問い合わせありがとうございました。<br>24時間以内にご返信いたします。</p>
-        </div>
-    `;
-    
-    // スタイルを設定
-    successMessage.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.8);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 10000;
-        animation: fadeIn 0.3s ease;
-    `;
-    
-    const successContent = successMessage.querySelector('.success-content');
-    successContent.style.cssText = `
-        background: white;
-        padding: 2rem;
-        border-radius: 15px;
-        text-align: center;
-        max-width: 400px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    `;
-    
-    const successIcon = successMessage.querySelector('.success-icon');
-    successIcon.style.cssText = `
-        font-size: 3rem;
-        margin-bottom: 1rem;
-    `;
-    
-    document.body.appendChild(successMessage);
-    
-    // 3秒後にメッセージを削除
-    setTimeout(() => {
-        successMessage.style.animation = 'fadeOut 0.3s ease';
         setTimeout(() => {
-            document.body.removeChild(successMessage);
-        }, 300);
-    }, 3000);
+            backgroundSlider.style.backgroundImage = `url('${backgroundImages[nextIndex]}')`;
+            backgroundSlider.style.opacity = '1';
+            currentImageIndex = nextIndex;
+        }, 1000);
+    }
+}
+
+// ナビゲーションセットアップ
+function setupNavigation() {
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            // 外部リンク（.html ファイル）の場合はデフォルト動作を許可
+            if (href.includes('.html')) {
+                return; // ページ遷移を許可
+            }
+            
+            // ハッシュリンクの場合のみ preventDefault
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                const targetId = href.substring(1);
+                
+                // アクティブなナビリンクを更新
+                navLinks.forEach(navLink => navLink.classList.remove('active'));
+                this.classList.add('active');
+                
+                // セクションを表示
+                showSection(targetId);
+            }
+            
+            // モバイルメニューを閉じる
+            if (navMenu.classList.contains('active')) {
+                toggleMobileMenu();
+            }
+        });
+    });
+}
+
+// セクションを表示する関数
+function showSection(targetId) {
+    sections.forEach(section => {
+        section.classList.remove('active');
+    });
     
-    // クリックで閉じる
-    successMessage.addEventListener('click', function(e) {
-        if (e.target === successMessage) {
-            successMessage.style.animation = 'fadeOut 0.3s ease';
-            setTimeout(() => {
-                document.body.removeChild(successMessage);
-            }, 300);
+    const targetSection = document.getElementById(targetId);
+    if (targetSection) {
+        targetSection.classList.add('active');
+        
+        // ホームページ以外では背景を隠す
+        if (targetId === 'home') {
+            backgroundSlider.style.zIndex = '-2';
+            backgroundSlider.style.opacity = '1';
+        } else {
+            backgroundSlider.style.zIndex = '-2';
+            backgroundSlider.style.opacity = '0';
+        }
+        
+        // セクションタイトルのアニメーション
+        animateSectionTitle(targetSection);
+    }
+}
+
+// セクションタイトルのアニメーション
+function animateSectionTitle(section) {
+    const title = section.querySelector('.section-title');
+    if (title && section.id !== 'home') {
+        title.style.opacity = '0';
+        title.style.transform = 'translateY(30px)';
+        
+        setTimeout(() => {
+            title.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            title.style.opacity = '1';
+            title.style.transform = 'translateY(0)';
+        }, 100);
+    }
+}
+
+// ハンバーガーメニューセットアップ
+function setupHamburgerMenu() {
+    hamburger.addEventListener('click', toggleMobileMenu);
+}
+
+// モバイルメニューの切り替え
+function toggleMobileMenu() {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+}
+
+// スクロールイベントセットアップ
+function setupScrollEvents() {
+    window.addEventListener('scroll', function() {
+        // ナビバーの背景を調整
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
         }
     });
 }
 
-// FAQの初期化
-function initializeFAQ() {
-    const faqQuestions = document.querySelectorAll('.faq-question');
-    
-    faqQuestions.forEach(question => {
-        question.addEventListener('click', function() {
-            const faqItem = this.parentElement;
-            const isActive = faqItem.classList.contains('active');
-            
-            // 他のFAQを閉じる
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            // クリックされたFAQを開く/閉じる
-            if (!isActive) {
-                faqItem.classList.add('active');
-            }
-        });
-    });
-}
-
-// スムーススクロールの実装
-function initializeSmoothScroll() {
-    const links = document.querySelectorAll('a[href^="#"]');
-    
-    links.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href === '#') return;
-            
+// お問い合わせフォームセットアップ
+function setupContactForm() {
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            const target = document.querySelector(href);
-            
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+            handleFormSubmit();
+        });
+    }
+}
+
+// フォーム送信処理
+function handleFormSubmit() {
+    const formData = new FormData(contactForm);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const subject = formData.get('subject') || 'お問い合わせ';
+    const message = formData.get('message');
+    
+    // 簡単なバリデーション
+    if (!name || !email || !message) {
+        showNotification('必須項目を入力してください。', 'error');
+        return;
+    }
+    
+    if (!isValidEmail(email)) {
+        showNotification('正しいメールアドレスを入力してください。', 'error');
+        return;
+    }
+    
+    // フォーム送信の成功メッセージ（実際の送信処理はサーバーサイドで実装）
+    showNotification('お問い合わせを受け付けました。ありがとうございます！', 'success');
+    contactForm.reset();
+}
+
+// メールアドレスのバリデーション
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// 通知表示
+function showNotification(message, type = 'info') {
+    // 既存の通知があれば削除
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    // 通知要素を作成
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.textContent = message;
+    
+    // スタイルを設定
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: ${type === 'success' ? '#27ae60' : type === 'error' ? '#e74c3c' : '#3498db'};
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 5px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        z-index: 10000;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        max-width: 300px;
+        word-wrap: break-word;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // アニメーションで表示
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // 3秒後に非表示
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.remove();
             }
+        }, 300);
+    }, 3000);
+}
+
+// スムーズスクロール機能（内部リンク用）
+function smoothScrollTo(element) {
+    if (element) {
+        element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+}
+
+// キーボードナビゲーション
+document.addEventListener('keydown', function(e) {
+    // Escキーでモバイルメニューを閉じる
+    if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+        toggleMobileMenu();
+    }
+    
+    // 数字キーでページ切り替え
+    const keyNumber = parseInt(e.key);
+    if (keyNumber >= 1 && keyNumber <= 5 && !e.ctrlKey && !e.altKey) {
+        const pages = ['home', 'about', 'hobbies', 'games', 'contact'];
+        const targetPage = pages[keyNumber - 1];
+        if (targetPage) {
+            // 対応するナビリンクを見つけてクリック
+            const navLink = document.querySelector(`a[href="#${targetPage}"]`);
+            if (navLink) {
+                navLink.click();
+            }
+        }
+    }
+});
+
+// ページ遷移のアニメーション効果を向上
+function enhancePageTransitions() {
+    sections.forEach(section => {
+        const cards = section.querySelectorAll('.hobby-card, .game-card, .info-item');
+        
+        cards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100 + (index * 100));
         });
     });
 }
 
+// インターセクションオブザーバーでアニメーション
+function setupScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // アニメーション対象要素を監視
+    document.querySelectorAll('.hobby-card, .game-card, .info-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+}
+
+// ページ読み込み完了後の追加設定
 window.addEventListener('load', function() {
-    // ページ読み込み完了後の処理
-    document.body.classList.add('loaded');
+    // スクロールアニメーションを設定
+    setupScrollAnimations();
+    
+    // 全ての画像の読み込みを確認
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        if (!img.complete) {
+            img.addEventListener('load', function() {
+                console.log(`画像が読み込まれました: ${img.src}`);
+            });
+        }
+    });
 });
+
+// エラーハンドリング
+window.addEventListener('error', function(e) {
+    console.error('エラーが発生しました:', e.error);
+});
+
+// パフォーマンス最適化：Intersection Observer for lazy loading
+function setupLazyLoading() {
+    const images = document.querySelectorAll('img[data-src]');
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove('lazy');
+                imageObserver.unobserve(img);
+            }
+        });
+    });
+    
+    images.forEach(img => imageObserver.observe(img));
+}

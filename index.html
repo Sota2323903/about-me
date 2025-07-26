@@ -3,145 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ホーム - Souta's Student Profile</title>
-    <meta name="description" content="学生Soutaの自己紹介サイトです。プロフィール、学習内容、趣味、作品などをご紹介します。">
-
-    <!-- Reset CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/ress/dest/ress.min.css">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
-    
-    <!-- Original CSS -->
+    <title>自己紹介 - Sota</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="page-home">
-    <!-- Background Slideshow -->
-    <div class="background-slideshow">
-        <div class="background-slide active">
-            <img src="image/IMG_4918.jpeg" alt="背景1">
-        </div>
-        <div class="background-slide">
-            <img src="image/IMG_4948.jpeg" alt="背景2">
-        </div>
-        <div class="background-slide">
-            <img src="image/IMG_4980.jpeg" alt="背景3">
-        </div>
-        <div class="background-slide">
-            <img src="image/IMG_5025.jpeg" alt="背景4">
-        </div>
-        <div class="background-slide">
-            <img src="image/IMG_5026.jpeg" alt="背景5">
-        </div>
-        <div class="background-slide">
-            <img src="image/IMG_5041.jpeg" alt="背景6">
-        </div>
-        <div class="background-slide">
-            <img src="image/IMG_5103.jpeg" alt="背景7">
-        </div>
-    </div>
-
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <h1 class="logo">
-                    <a href="index.html">🌟 Souta</a>
-                </h1>
-                <nav class="nav">
-                    <ul class="nav-list">
-                        <li><a href="index.html" class="active">ホーム</a></li>
-                        <li><a href="about.html">自己紹介</a></li>
-                        <li><a href="hobby.html">趣味</a></li>
-                        <li><a href="games.html">ゲーム</a></li>
-                        <li><a href="contact.html">お問い合わせ</a></li>
-                    </ul>
-                </nav>
-                <button class="menu-toggle" id="menuToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+<body>
+    <div id="background-slider"></div>
+    
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home">Sota</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link active">ホーム</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">自己紹介</a>
+                </li>
+                <li class="nav-item">
+                    <a href="hobbies.html" class="nav-link">趣味</a>
+                </li>
+                <li class="nav-item">
+                    <a href="games.html" class="nav-link">ゲーム</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">お問い合わせ</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h2 class="hero-title">私の学生プロフィールへようこそ</h2>
-            <p class="hero-subtitle">こんにちは！大学生のSoutaです。<br>学習の記録と成長の軌跡をご紹介します</p>
-            <div class="hero-buttons">
-                <a href="about.html" class="btn btn-primary">自己紹介</a>
-                <a href="hobby.html" class="btn btn-secondary">趣味を見る</a>
-                <a href="games.html" class="btn btn-outline">ゲーム紹介</a>
-            </div>
-        </div>
-        <div class="hero-image">
-            <img src="image/IMG_4918.jpeg" alt="学習の様子" style="border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
-        </div>
-    </section>
-
-    <!-- Gallery Preview -->
-    <section class="gallery-preview">
-        <div class="container">
-            <h3 class="section-title">Study Gallery</h3>
-            <p class="section-subtitle">学習の様子やプロジェクトをご紹介</p>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="image/IMG_4948.jpeg" alt="ギャラリー1">
-                </div>
-                <div class="gallery-item">
-                    <img src="image/IMG_4980.jpeg" alt="ギャラリー2">
-                </div>
-                <div class="gallery-item">
-                    <img src="image/IMG_5025.jpeg" alt="ギャラリー3">
-                </div>
-                <div class="gallery-item">
-                    <img src="image/IMG_5026.jpeg" alt="ギャラリー4">
+    <main>
+        <!-- ホームページ -->
+        <section id="home" class="section active">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">こんにちは！</h1>
+                    <h2 class="hero-subtitle">私の名前は<span class="highlight">Sota</span>です</h2>
+                    <p class="hero-description">
+                        学生として日々学習に励みながら、<br>
+                        ゲームや様々な趣味を楽しんでいます。<br>
+                        このサイトで私のことを知ってもらえると嬉しいです！
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="about.html" class="btn btn-primary">もっと知る</a>
+                        <a href="contact.html" class="btn btn-secondary">お問い合わせ</a>
+                    </div>
                 </div>
             </div>
-            <div class="gallery-more">
-                <a href="hobby.html" class="btn btn-outline">趣味ページを見る</a>
+            <div class="scroll-indicator">
+                <span>スクロール</span>
+                <div class="arrow-down"></div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Quick Info -->
-    <section class="quick-info">
-        <div class="container">
-            <div class="info-grid">
-                <div class="info-card">
-                    <div class="info-icon">📚</div>
-                    <h4>Learning</h4>
-                    <p>常に新しい技術を学び、実践を通してスキルを身につけています</p>
-                </div>
-                <div class="info-card">
-                    <div class="info-icon">🎯</div>
-                    <h4>Goal-Oriented</h4>
-                    <p>明確な目標を持って、計画的に学習を進めています</p>
-                </div>
-                <div class="info-card">
-                    <div class="info-icon">🤝</div>
-                    <h4>Collaboration</h4>
-                    <p>チームワークを大切にし、共に成長できる関係を築いています</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2025 Souta's Student Profile. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="contact.html">お問い合わせ</a>
-                    <a href="about.html">自己紹介</a>
-                </div>
-            </div>
+            <p>&copy; 2025 Sota. All rights reserved.</p>
         </div>
     </footer>
 

@@ -1,855 +1,586 @@
-@charset "UTF-8";
+/* リセットCSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-/* 背景スライドショー */
-.background-slideshow {
+/* 基本設定 */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 背景スライダー */
+#background-slider {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
-    overflow: hidden;
+    z-index: -2;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: opacity 2s ease-in-out;
 }
 
-.background-slide {
+#background-slider::before {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0;
-    transition: opacity 2s ease-in-out;
-}
-
-.background-slide.active {
-    opacity: 0.3;
-}
-
-.background-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: blur(1px);
-}
-
-/* 基本設定 */
-* { box-sizing: border-box; }
-html { font-size: 16px; scroll-behavior: smooth; }
-body {
-    font-family: 'Noto Sans JP', sans-serif;
-    line-height: 1.7;
-    color: #333;
-    background: transparent;
-    margin: 0;
-    overflow-x: hidden;
-}
-img { max-width: 100%; height: auto; display: block; }
-a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
-
-/* レイアウト */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-/* ヘッダー */
-.header {
-    background: #fff;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    height: 60px;
-}
-.header-content { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 0.5rem 0;
-    height: 100%;
-}
-.logo a { 
-    font-size: 1.2rem; 
-    font-weight: 600; 
-    color: #2c3e50;
-    display: flex;
-    align-items: center;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
 }
 
 /* ナビゲーション */
-.nav-list { 
-    display: flex; 
-    list-style: none; 
-    margin: 0; 
-    padding: 0; 
-    gap: 1.5rem; 
-}
-.nav-list a { 
-    color: #666; 
-    font-weight: 500; 
-    font-size: 0.9rem;
-    padding: 0.3rem 0.8rem;
-    border-radius: 4px;
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
     transition: all 0.3s ease;
-}
-.nav-list a:hover, .nav-list a.active { 
-    color: #3498db; 
-    background: rgba(52, 152, 219, 0.1);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* モバイルメニュー */
-.menu-toggle {
-    display: none;
-    flex-direction: column;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.3rem;
-    border-radius: 4px;
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.98);
 }
-.menu-toggle span {
-    width: 20px;
-    height: 2px;
-    background: #333;
-    margin: 2px 0;
-    transition: 0.3s;
-    border-radius: 2px;
-    transform-origin: center;
-}
-.menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-.menu-toggle.active span:nth-child(2) { opacity: 0; }
-.menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
-/* ヒーロー・ページヘッダー */
-.hero, .page-header {
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    min-height: 100vh;
-    padding: 120px 20px 80px;
-    background: rgba(102, 126, 234, 0.8);
-    color: white;
+    height: 70px;
 }
-.page-header { 
-    min-height: auto; 
-    text-align: center; 
-    padding: 80px 20px 40px;
+
+.nav-logo a {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #2c3e50;
+    text-decoration: none;
+    background: linear-gradient(45deg, #3498db, #9b59b6);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
-.hero-content { flex: 1; max-width: 600px; }
-.hero-title, .page-title { 
-    font-size: 2.2rem; 
-    font-weight: 600; 
-    margin-bottom: 0.5rem; 
-    line-height: 1.3; 
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
 }
-.hero-subtitle, .page-subtitle { 
-    font-size: 1rem; 
-    margin-bottom: 1.5rem; 
-    opacity: 0.9; 
-}
-.hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
-.hero-image { 
-    flex: 1; 
-    max-width: 500px; 
-    margin-left: 2rem; 
+
+.nav-link {
+    text-decoration: none;
+    color: #2c3e50;
+    font-weight: 500;
+    transition: color 0.3s ease;
     position: relative;
 }
 
-.hero-image img { border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(45deg, #3498db, #9b59b6);
+    transition: width 0.3s ease;
+}
 
-/* ボタン */
-.btn {
-    display: inline-block;
-    padding: 12px 30px;
-    border-radius: 30px;
-    font-weight: 600;
-    text-align: center;
-    transition: all 0.3s;
-    border: none;
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #3498db;
+}
+
+/* ハンバーガーメニュー */
+.hamburger {
+    display: none;
+    flex-direction: column;
     cursor: pointer;
-    text-decoration: none;
 }
-.btn-primary { background: #3498db; color: white; }
-.btn-primary:hover { background: #2980b9; transform: translateY(-2px); }
-.btn-secondary { background: transparent; color: #3498db; border: 2px solid #3498db; }
-.btn-secondary:hover { background: #3498db; color: white; }
-.btn-outline { background: transparent; color: #2c3e50; border: 2px solid #2c3e50; }
-.btn-outline:hover { background: #2c3e50; color: white; }
-.btn-large { padding: 15px 40px; font-size: 1.1rem; }
 
-/* セクション共通 */
-.section-title { font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 1rem; color: #2c3e50; }
-.section-subtitle { text-align: center; font-size: 1.1rem; color: #666; margin-bottom: 3rem; }
+.bar {
+    width: 25px;
+    height: 3px;
+    background: #2c3e50;
+    margin: 3px 0;
+    transition: 0.3s;
+}
 
-/* ギャラリー・趣味 */
-.gallery-preview, .hobby-gallery, .hobbies { padding: 80px 20px; }
-.hobbies { background: rgba(255, 255, 255, 0.9); }
-.gallery-preview { background: rgba(248, 249, 250, 0.9); }
-.quick-info { background: rgba(255, 255, 255, 0.9); padding: 80px 20px; }
-.hobby-gallery { background: rgba(248, 249, 250, 0.9); }
-.gallery-grid, .hobby-grid {
-    display: grid;
-    gap: 2rem;
-    margin-bottom: 3rem;
-}
-.gallery-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-.gallery-item, .hobby-card {
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
-}
-.gallery-item:hover, .hobby-card:hover { transform: translateY(-10px); }
-.gallery-item img { height: 250px; object-fit: cover; }
-.hobby-card {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+/* セクション */
+.section {
+    min-height: 100vh;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    background: white;
-    padding: 2rem;
+    padding: 80px 0 50px;
+    position: relative;
 }
-.hobby-card:nth-child(even) { direction: rtl; }
-.hobby-card:nth-child(even) .hobby-content { direction: ltr; }
-.hobby-image img { height: 200px; object-fit: cover; border-radius: 10px; }
-.hobby-content h3 { font-size: 1.5rem; margin-bottom: 1rem; color: #2c3e50; }
-.hobby-details { list-style: none; padding: 0; margin-top: 1rem; }
-.hobby-details li { padding: 0.5rem 0; color: #666; }
-.hobby-details li::before { content: "✓ "; color: #3498db; font-weight: bold; }
 
-/* ミニゲーム */
-.mini-game { padding: 80px 20px; background: rgba(248, 249, 250, 0.9); }
-.game-container { display: flex; justify-content: center; margin-top: 2rem; }
-.game-board {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    padding: 2rem;
-    max-width: 400px;
-    width: 100%;
+.section.active {
+    display: flex;
+}
+
+/* 個別ページ用のセクション */
+.page-section {
+    display: flex !important;
+    min-height: calc(100vh - 120px);
+    padding-top: 120px;
+}
+
+.section-title {
+    font-size: 3rem;
     text-align: center;
-}
-.game-board h4 { color: #3498db; margin-bottom: 1rem; }
-.game-status { margin: 1.5rem 0; }
-.game-message { font-weight: 600; padding: 1rem; border-radius: 10px; margin: 1rem 0; }
-.game-input { display: flex; gap: 1rem; margin: 1.5rem 0; justify-content: center; align-items: center; }
-.game-input input { padding: 0.8rem; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem; width: 150px; text-align: center; }
-.game-input input:focus { outline: none; border-color: #3498db; }
-.guess-history { margin-top: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 10px; min-height: 60px; }
-.guess-history h5 { margin: 0 0 0.5rem 0; color: #666; }
-
-/* お問い合わせ・フォーム */
-.contact-form-section, .profile, .skills, .timeline, .contact-intro, .academic-info, .future-goals, .faq, .privacy-section { padding: 80px 20px; }
-.profile { background: rgba(255, 255, 255, 0.9); }
-.timeline { background: rgba(248, 249, 250, 0.9); }
-.academic-info { background: rgba(255, 255, 255, 0.9); }
-.future-goals { background: rgba(248, 249, 250, 0.9); }
-.contact-intro { background: rgba(255, 255, 255, 0.9); }
-.contact-form-section { background: rgba(248, 249, 250, 0.9); }
-.faq { background: rgba(255, 255, 255, 0.9); }
-.privacy-section { background: rgba(248, 249, 250, 0.9); }
-.skills { background: rgba(248, 249, 250, 0.9); }
-.contact-content, .profile-content { display: grid; gap: 3rem; align-items: start; }
-.contact-content { grid-template-columns: 1fr 1fr; }
-.profile-content { grid-template-columns: 1fr 2fr; align-items: center; }
-.contact-info h3, .profile-text h3 { font-size: 2rem; margin-bottom: 1rem; color: #2c3e50; }
-.contact-items { margin-top: 2rem; }
-.contact-item { display: flex; align-items: center; margin-bottom: 2rem; transition: transform 0.3s; }
-.contact-item:hover { transform: translateX(5px); }
-.contact-icon { font-size: 2rem; margin-right: 1rem; width: 60px; text-align: center; }
-.contact-text h4 { margin-bottom: 0.5rem; color: #2c3e50; }
-.contact-text p { color: #666; margin: 0; }
-.profile-image img { max-width: 300px; border-radius: 50%; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-.profile-description { font-size: 1.1rem; margin-bottom: 2rem; color: #666; }
-.profile-stats { display: flex; gap: 2rem; margin-top: 2rem; }
-.stat-item { text-align: center; }
-.stat-number { display: block; font-size: 2rem; font-weight: 700; color: #3498db; }
-.stat-label { font-size: 0.9rem; color: #666; }
-
-/* Contact intro, highlights, social */
-.contact-highlights { display: flex; justify-content: space-around; gap: 1rem; margin: 2rem 0; flex-wrap: wrap; }
-.highlight-item { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1rem; }
-.highlight-icon { font-size: 2rem; margin-bottom: 0.5rem; }
-.highlight-item span { font-weight: 600; color: #2c3e50; }
-.social-links { margin-top: 3rem; }
-.social-links h4 { margin-bottom: 1rem; color: #2c3e50; }
-.social-icons { display: flex; gap: 1rem; flex-wrap: wrap; }
-.social-link { display: flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1rem; background: #f8f9fa; border-radius: 10px; transition: all 0.3s; }
-.social-link:hover { background: #3498db; color: white; transform: translateY(-2px); }
-.social-icon { font-size: 1.2rem; }
-
-/* FAQ */
-.faq-items { max-width: 800px; margin: 0 auto; }
-.faq-item { background: white; border-radius: 10px; margin-bottom: 1rem; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden; transition: all 0.3s; }
-.faq-item.active { box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
-.faq-question { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; cursor: pointer; background: white; transition: background 0.3s; }
-.faq-question:hover { background: #f8f9fa; }
-.faq-question h4 { margin: 0; color: #2c3e50; font-size: 1.1rem; }
-.faq-toggle { font-size: 1.5rem; font-weight: bold; color: #3498db; transition: transform 0.3s; }
-.faq-item.active .faq-toggle { transform: rotate(45deg); }
-.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: #f8f9fa; }
-.faq-item.active .faq-answer { max-height: 300px; }
-.faq-answer p { padding: 1.5rem; margin: 0; color: #666; line-height: 1.6; }
-
-/* Privacy */
-.privacy-content { max-width: 800px; margin: 0 auto; background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-.privacy-content h4 { color: #2c3e50; margin-bottom: 1rem; }
-.privacy-list { margin-top: 1rem; padding-left: 0; }
-.privacy-list li { margin-bottom: 0.5rem; color: #666; padding-left: 1.5rem; position: relative; }
-.privacy-list li::before { content: "•"; color: #3498db; position: absolute; left: 0; font-weight: bold; }
-.privacy-link { color: #3498db; text-decoration: underline; }
-
-/* Academic & Goals */
-.academic-grid, .quick-info .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-.academic-card { background: white; border-radius: 15px; padding: 2rem; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s; }
-.academic-card:hover { transform: translateY(-5px); }
-.academic-icon { font-size: 3rem; margin-bottom: 1rem; }
-.academic-card h4 { font-size: 1.3rem; margin-bottom: 1rem; color: #2c3e50; }
-.goals-content { max-width: 800px; margin: 0 auto; }
-.goal-item { display: flex; align-items: center; background: white; padding: 2rem; border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s; }
-.goal-item:hover { transform: translateX(10px); }
-.goal-icon { font-size: 3rem; margin-right: 2rem; color: #3498db; }
-.goal-text h4 { margin-bottom: 0.5rem; color: #2c3e50; }
-.goal-text p { color: #666; margin: 0; }
-
-/* Form note & privacy link */
-.form-note { font-size: 0.9rem; color: #666; margin-top: 1rem; text-align: center; }
-.privacy-link:hover { color: #2980b9; }
-
-/* Games Page Styles */
-.games-intro { padding: 80px 20px; background: rgba(248, 249, 250, 0.9); }
-.game-stats { display: flex; justify-content: center; gap: 3rem; margin-top: 2rem; flex-wrap: wrap; }
-
-.game-section { padding: 80px 20px; }
-.game-section:nth-child(even) { background: #f8f9fa; }
-.game-section.nier-section { background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%) !important; color: #f0f0f0; }
-.nier-section h4 { color: #e0e0e0; }
-.nier-section .game-title { color: #ffffff; }
-.nier-section .game-features li { color: #d0d0d0; }
-.nier-section .rating-label { color: #e0e0e0; }
-.nier-section .game-developer { color: #c0c0c0; }
-.game-section.overwatch-section { background: linear-gradient(135deg, #f76902 0%, #ff8c00 100%); color: white; }
-.game-section.valorant-section { background: linear-gradient(135deg, #0f1419 0%, #ff4655 100%); color: white; }
-
-.game-content { display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; align-items: center; }
-.game-content.reverse { grid-template-columns: 1fr 2fr; }
-.game-content.reverse .game-visual { order: -1; }
-
-.game-header { margin-bottom: 2rem; }
-.game-title { font-size: 2.5rem; margin-bottom: 1rem; }
-.game-tags { display: flex; gap: 1rem; flex-wrap: wrap; }
-.tag { background: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600; }
-
-.game-description h4 { color: inherit; margin: 2rem 0 1rem 0; font-size: 1.4rem; }
-.nier-section .game-description h4 { color: #ffffff !important; font-weight: 600; }
-.nier-section .game-description p { color: #e8e8e8 !important; line-height: 1.8; }
-.nier-section .game-highlight { background: rgba(255,255,255,0.15) !important; color: #ffffff !important; }
-.nier-section .tag { background: rgba(255,255,255,0.3) !important; color: #ffffff !important; }
-.game-features { margin: 1rem 0; padding-left: 1.5rem; }
-.game-features li { margin-bottom: 0.5rem; }
-.game-highlight { background: rgba(255,255,255,0.15); padding: 1rem; border-radius: 10px; margin: 1.5rem 0; border-left: 4px solid currentColor; }
-.game-catchphrase { font-size: 1.3rem; text-align: center; background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 15px; margin: 2rem 0; }
-
-.game-rating { margin: 2rem 0; }
-.rating-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
-.rating-stars { font-size: 1.2rem; }
-
-.game-developer { margin-top: 2rem; font-size: 0.95rem; opacity: 0.9; }
-
-/* Game Images */
-.game-image {
-    aspect-ratio: 16/9;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease;
+    margin-bottom: 3rem;
+    color: #2c3e50;
+    position: relative;
 }
 
-.game-image-with-fallback {
-    aspect-ratio: 16/9;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease;
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(45deg, #3498db, #9b59b6);
+    border-radius: 2px;
 }
 
-.game-image:hover { transform: scale(1.05); }
-.game-image-with-fallback:hover { transform: scale(1.05); }
-
-.game-image img,
-.game-image-with-fallback img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 15px;
-}
-
-.hero-list { margin: 1rem 0; }
-.hero-list li { margin-bottom: 0.5rem; }
-
-.strategy-points { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
-.strategy-item { display: flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.1); padding: 0.8rem; border-radius: 10px; }
-.strategy-icon { font-size: 1.2rem; }
-
-.game-rules { margin: 1.5rem 0; }
-.rule-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; }
-.rule-number { background: #ff4655; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-.rule-icon { font-size: 1.5rem; width: 40px; text-align: center; }
-
-.agent-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
-.agent-card { display: flex; align-items: center; gap: 1rem; background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; }
-.agent-icon { font-size: 2rem; }
-.agent-info strong { display: block; margin-bottom: 0.3rem; }
-.agent-info p { margin: 0; font-size: 0.9rem; opacity: 0.9; }
-
-.valorant-features { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
-.feature-item { background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 15px; }
-.feature-item h5 { margin: 0 0 0.5rem 0; color: #ff4655; }
-.feature-item p { margin: 0; font-size: 0.95rem; }
-
-.game-summary { font-size: 1.1rem; text-align: center; margin-top: 2rem; padding: 1.5rem; background: rgba(255,255,255,0.15); border-radius: 15px; }
-
-/* Character Grid */
-.character-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
-.character-card { background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; text-align: center; }
-
-/* Philosophy Questions */
-.philosophy-questions { list-style: none; padding: 0; margin: 1.5rem 0; }
-.philosophy-questions li { margin-bottom: 0.8rem; padding: 0.5rem; background: rgba(255,255,255,0.1); border-radius: 5px; }
-
-/* Beginner Reactions */
-.beginner-reactions { list-style: none; padding: 0; margin: 1.5rem 0; }
-.beginner-reactions li { margin-bottom: 0.8rem; padding: 0.8rem; background: rgba(255,255,255,0.1); border-radius: 5px; }
-
-/* Final Message */
-.final-message { font-size: 1.1rem; text-align: center; margin: 2rem 0; padding: 1.5rem; background: rgba(255,255,255,0.1); border-radius: 10px; }
-
-/* Link Icons */
-.link-icon { font-size: 1.2rem; margin-right: 0.5rem; }
-
-/* Button States */
-.btn-text { display: inline; }
-.btn-loading { display: none; }
-
-.gaming-philosophy { padding: 80px 20px; background: rgba(248, 249, 250, 0.9); }
-.philosophy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
-.philosophy-card { background: white; padding: 2rem; border-radius: 15px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s; }
-.philosophy-card:hover { transform: translateY(-5px); }
-.philosophy-icon { font-size: 3rem; margin-bottom: 1rem; }
-.philosophy-card h4 { color: #2c3e50; margin-bottom: 1rem; }
-
-.game-cta { padding: 80px 20px; background: rgba(52, 152, 219, 0.9); color: white; text-align: center; }
-.cta-content h3 { font-size: 2.5rem; margin-bottom: 1rem; }
-.cta-content p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; }
-.cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
-.form {
-    background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-.form-group { margin-bottom: 1.5rem; }
-.form-group label { display: block; margin-bottom: 0.5rem; color: #2c3e50; font-weight: 600; }
-.form-group input, .form-group textarea, .form-group select {
-    width: 100%;
-    padding: 0.8rem;
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: border-color 0.3s;
-}
-.form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: #3498db; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.checkbox-group { margin: 2rem 0; }
-.checkbox-label { display: flex; align-items: center; cursor: pointer; font-size: 0.95rem; }
-.checkbox-label input[type="checkbox"] { display: none; }
-.checkmark { width: 20px; height: 20px; border: 2px solid #ddd; border-radius: 4px; margin-right: 0.8rem; position: relative; transition: all 0.3s; }
-.checkbox-label input[type="checkbox"]:checked + .checkmark { background: #3498db; border-color: #3498db; }
-.checkbox-label input[type="checkbox"]:checked + .checkmark::after { content: "✓"; position: absolute; color: white; font-size: 14px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
-.form-submit { text-align: center; }
-.form button:disabled { opacity: 0.7; cursor: not-allowed; }
-
-/* スキル・その他 */
-.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-.skill-card, .info-card {
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
-    background: white;
-    padding: 2rem;
+/* ホームページ */
+#home {
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
     text-align: center;
-}
-.skill-card:hover, .info-card:hover { transform: translateY(-5px); }
-.skill-icon, .info-icon { font-size: 3rem; margin-bottom: 1rem; }
-.skill-card h4, .info-card h4 { font-size: 1.5rem; margin-bottom: 1rem; color: #2c3e50; }
-
-/* タイムライン */
-.timeline-content { max-width: 800px; margin: 0 auto; }
-.timeline-item { display: flex; align-items: center; margin-bottom: 3rem; padding: 2rem; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-.timeline-year { font-size: 1.5rem; font-weight: 700; color: #3498db; margin-right: 2rem; min-width: 80px; }
-.timeline-content-item h4 { margin-bottom: 0.5rem; color: #2c3e50; }
-
-/* フッター */
-.footer { background: rgba(44, 62, 80, 0.9); color: white; padding: 40px 20px; }
-.footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
-.footer-links { display: flex; gap: 2rem; }
-.footer-links a { color: white; opacity: 0.8; transition: opacity 0.3s; }
-.footer-links a:hover { opacity: 1; }
-
-/* レスポンシブ */
-@media (max-width: 768px) {
-    .container { padding: 0 15px; }
-    .nav { display: none; }
-    .menu-toggle { display: flex; }
-    .nav.mobile-nav-open { display: block; position: absolute; top: 100%; left: 0; right: 0; background: white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 1rem 0; }
-    .nav.mobile-nav-open .nav-list { flex-direction: column; gap: 0; }
-    .nav.mobile-nav-open .nav-list a { display: block; padding: 1rem 2rem; border-bottom: 1px solid #eee; }
-    .hero-title, .page-title { font-size: 2.5rem; }
-    .section-title { font-size: 2rem; }
-    .hero-subtitle, .page-subtitle { font-size: 1rem; }
-    .hero-content { text-align: center; }
-    .hero-image { margin-left: 0; margin-top: 2rem; }
-    .hobby-card { grid-template-columns: 1fr; text-align: center; }
-    .hobby-card:nth-child(even) { direction: ltr; }
-    .hobby-image { order: -1; }
-    .hobby-image img { height: 250px; }
-    .game-board { padding: 1.5rem; margin: 0 15px; }
-    .game-input { flex-direction: column; gap: 1rem; }
-    .game-input input { width: 100%; max-width: 200px; }
-    .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
-    .gallery-item img { height: 200px; }
-    .profile-content, .contact-content { grid-template-columns: 1fr; gap: 2rem; }
-    .profile-content { text-align: center; }
-    .profile-stats { justify-content: center; flex-wrap: wrap; gap: 1rem; }
-    .form-row { grid-template-columns: 1fr; }
-    .timeline-item { flex-direction: column; text-align: center; padding: 1.5rem; }
-    .timeline-year { margin-right: 0; margin-bottom: 1rem; min-width: auto; }
-    .hero-buttons { justify-content: center; }
-    .contact-highlights { justify-content: center; gap: 2rem; }
-    .social-icons { justify-content: center; }
-    .goal-item { flex-direction: column; text-align: center; }
-    .goal-icon { margin-right: 0; margin-bottom: 1rem; }
-    .academic-grid, .quick-info .info-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-    
-    /* Games responsive */
-    .game-content { grid-template-columns: 1fr; gap: 2rem; }
-    .game-content.reverse { grid-template-columns: 1fr; }
-    .game-content.reverse .game-visual { order: 0; }
-    .game-title { font-size: 2rem; }
-    .strategy-points { grid-template-columns: 1fr; gap: 0.8rem; }
-    .rule-item { flex-direction: column; text-align: center; gap: 0.8rem; }
-    .agent-grid { grid-template-columns: 1fr; }
-    .valorant-features { grid-template-columns: 1fr; gap: 1rem; }
-    .philosophy-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-    .cta-content h3 { font-size: 2rem; }
-    .cta-buttons { flex-direction: column; align-items: center; }
-    
-    /* Game images responsive */
-    .game-image { aspect-ratio: 16/10; }
-    .game-image:hover { transform: none; }
+    z-index: 1;
+    position: relative;
 }
 
-@media (max-width: 480px) {
-    html { font-size: 14px; }
-    .container { padding: 0 10px; }
-    .logo a { font-size: 1.2rem; }
-    .hero-title, .page-title { font-size: 2rem; }
-    .section-title { font-size: 1.8rem; }
-    .hero-subtitle, .page-subtitle { font-size: 0.95rem; }
-    .hero, .hobbies, .mini-game, .hobby-gallery, .contact-form-section, .skills, .timeline, .contact-intro, .academic-info, .future-goals, .faq, .privacy-section, .games-intro, .game-section, .gaming-philosophy, .game-cta { padding: 60px 10px; }
-    .page-header { padding: 100px 10px 60px; }
-    .hobby-card { padding: 1.5rem; gap: 1.5rem; }
-    .hobby-content h3 { font-size: 1.3rem; }
-    .hobby-image img { height: 200px; }
-    .game-board { padding: 1rem; margin: 0 10px; }
-    .game-board h4 { font-size: 1.3rem; }
-    .btn { padding: 10px 20px; font-size: 0.9rem; }
-    .gallery-grid { grid-template-columns: 1fr; gap: 1rem; }
-    .gallery-item img { height: 180px; }
-    .profile-image img { max-width: 200px; }
-    .profile-text h3 { font-size: 1.5rem; }
-    .stat-number { font-size: 1.5rem; }
-    .contact-info h3 { font-size: 1.5rem; }
-    .contact-icon { font-size: 1.5rem; width: 50px; }
-    .form { padding: 1.5rem; }
-    .skills-grid, .academic-grid { grid-template-columns: 1fr; }
-    .skill-icon, .info-icon, .academic-icon { font-size: 2.5rem; }
-    .footer-content { flex-direction: column; gap: 1rem; text-align: center; }
-    .footer-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
-    .contact-highlights { flex-direction: column; gap: 1rem; }
-    .highlight-item { padding: 0.5rem; }
-    .social-icons { flex-direction: column; gap: 0.5rem; }
-    
-    /* Games 480px responsive */
-    .game-stats { flex-direction: column; gap: 1rem; align-items: center; }
-    .game-title { font-size: 1.8rem; }
-    .game-tags { justify-content: center; }
-    .game-catchphrase { font-size: 1.1rem; padding: 1rem; }
-    .strategy-item { padding: 0.6rem; font-size: 0.9rem; }
-    .agent-card { padding: 0.8rem; }
-    .feature-item { padding: 1rem; }
-    .cta-content h3 { font-size: 1.8rem; }
-    .cta-content p { font-size: 1rem; }
+.hero-content {
+    max-width: 800px;
+    padding: 0 20px;
 }
 
-@media (max-width: 360px) {
-    html { font-size: 13px; }
-    .container { padding: 0 8px; }
-    .hero-title, .page-title { font-size: 1.8rem; }
-    .section-title { font-size: 1.6rem; }
-    .hobby-card, .game-board, .form { padding: 1rem; }
-    .gallery-item img { height: 150px; }
-    .btn { padding: 8px 16px; font-size: 0.85rem; }
-    .contact-icon { font-size: 1.3rem; width: 40px; }
+.hero-title {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: fadeInUp 1s ease;
 }
 
-/* ==========================================
-   ページ別テーマスタイル
-========================================== */
-
-/* ホームページ (ブルーテーマ) */
-.page-home {
-    --primary-color: #3498db;
-    --secondary-color: #2980b9;
-    --accent-color: #85c1e9;
+.hero-subtitle {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 1s ease 0.2s both;
 }
 
-.page-home .header {
-    background: linear-gradient(90deg, #3498db, #2980b9);
-    box-shadow: 0 2px 15px rgba(52, 152, 219, 0.3);
+.highlight {
+    background: linear-gradient(45deg, #3498db, #9b59b6);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
 }
 
-.page-home .header .logo a,
-.page-home .nav-list a {
+.hero-description {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+    animation: fadeInUp 1s ease 0.4s both;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 1s ease 0.6s both;
+}
+
+.btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #3498db, #9b59b6);
     color: white;
 }
 
-.page-home .nav-list a:hover,
-.page-home .nav-list a.active {
-    color: #85c1e9;
-    background: rgba(133, 193, 233, 0.2);
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
 }
 
-.page-home .hero {
-    background: linear-gradient(135deg, #667db6 0%, #0082c8 100%);
+.btn-secondary {
+    background: transparent;
     color: white;
+    border: 2px solid white;
 }
 
-.page-home .btn-primary {
-    background: #2980b9;
-    border-color: #2980b9;
-}
-
-.page-home .btn-primary:hover {
-    background: #1f5f8b;
+.btn-secondary:hover {
+    background: white;
+    color: #2c3e50;
     transform: translateY(-2px);
 }
 
-/* 自己紹介ページ (グリーンテーマ) */
-.page-about {
-    --primary-color: #27ae60;
-    --secondary-color: #229954;
-    --accent-color: #58d68d;
-}
-
-.page-about .header {
-    background: linear-gradient(90deg, #27ae60, #229954);
-    box-shadow: 0 2px 15px rgba(39, 174, 96, 0.3);
-}
-
-.page-about .header .logo a,
-.page-about .nav-list a {
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
     color: white;
+    animation: bounce 2s infinite;
 }
 
-.page-about .nav-list a:hover,
-.page-about .nav-list a.active {
-    color: #58d68d;
-    background: rgba(88, 214, 141, 0.2);
+.arrow-down {
+    width: 20px;
+    height: 20px;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+    transform: rotate(45deg);
+    margin: 10px auto;
 }
 
-.page-about .page-header {
-    background: linear-gradient(135deg, #27ae60, #229954);
-    color: white;
+/* 自己紹介ページ */
+#about {
+    background: #f8f9fa;
+    padding-top: 120px;
 }
 
-.page-about .btn-primary {
-    background: #229954;
-    border-color: #229954;
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-.page-about .profile-stats .stat-number {
-    color: #27ae60;
+.about-text h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
 }
 
-.page-about .skill-card:hover {
-    border-color: #27ae60;
+.about-text p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #555;
+    line-height: 1.8;
+}
+
+.profile-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.info-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.info-item:hover {
     transform: translateY(-5px);
 }
 
-/* 趣味ページ (オレンジテーマ) */
-.page-hobby {
-    --primary-color: #f39c12;
-    --secondary-color: #e67e22;
-    --accent-color: #f8c471;
+.info-item h4 {
+    color: #3498db;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
 }
 
-.page-hobby .header {
-    background: linear-gradient(90deg, #f39c12, #e67e22);
-    box-shadow: 0 2px 15px rgba(243, 156, 18, 0.3);
+.skills {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
-.page-hobby .header .logo a,
-.page-hobby .nav-list a {
+.skills h4 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-tag {
+    background: linear-gradient(45deg, #3498db, #9b59b6);
     color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
-.page-hobby .nav-list a:hover,
-.page-hobby .nav-list a.active {
-    color: #f8c471;
-    background: rgba(248, 196, 113, 0.2);
+/* 趣味ページ */
+#hobbies {
+    background: white;
+    padding-top: 120px;
 }
 
-.page-hobby .page-header {
-    background: linear-gradient(135deg, #f39c12, #e67e22);
+.hobbies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.hobby-card {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.hobby-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    background: white;
+}
+
+.hobby-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hobby-card h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.hobby-card p {
+    color: #555;
+    line-height: 1.6;
+}
+
+/* ゲームページ */
+#games {
+    background: #f8f9fa;
+    padding-top: 120px;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.game-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.game-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.game-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.game-card:hover .game-image img {
+    transform: scale(1.1);
+}
+
+.game-content {
+    padding: 2rem;
+}
+
+.game-content h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.game-content p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.game-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: #e9ecef;
+    color: #495057;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* お問い合わせページ */
+#contact {
+    background: white;
+    padding-top: 120px;
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contact-info h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.contact-info p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-method {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.contact-icon {
+    font-size: 2rem;
+}
+
+.contact-method h4 {
+    color: #2c3e50;
+    margin-bottom: 0.2rem;
+}
+
+.contact-method p {
+    color: #666;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.contact-form {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 20px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* フッター */
+.footer {
+    background: #2c3e50;
     color: white;
+    text-align: center;
+    padding: 2rem 0;
 }
 
-.page-hobby .btn-primary {
-    background: #e67e22;
-    border-color: #e67e22;
-}
-
-.page-hobby .hobby-card {
-    border-left: 4px solid #f39c12;
-}
-
-.page-hobby .hobby-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(243, 156, 18, 0.2);
-}
-
-.page-hobby .game-board {
-    border: 2px solid #f39c12;
-    background: linear-gradient(135deg, #fff7e6, #fef2e0);
-}
-
-/* ゲームページ (パープルテーマ) */
-.page-games {
-    --primary-color: #8e44ad;
-    --secondary-color: #7d3c98;
-    --accent-color: #bb8fce;
-}
-
-.page-games .header {
-    background: linear-gradient(90deg, #8e44ad, #7d3c98);
-    box-shadow: 0 2px 15px rgba(142, 68, 173, 0.3);
-}
-
-.page-games .header .logo a,
-.page-games .nav-list a {
-    color: white;
-}
-
-.page-games .nav-list a:hover,
-.page-games .nav-list a.active {
-    color: #bb8fce;
-    background: rgba(187, 143, 206, 0.2);
-}
-
-.page-games .page-header {
-    background: linear-gradient(135deg, #8e44ad, #7d3c98);
-    color: white;
-}
-
-.page-games .btn-primary {
-    background: #7d3c98;
-    border-color: #7d3c98;
-}
-
-.page-games .game-section.nier-section {
-    background: linear-gradient(135deg, #2c3e50, #34495e);
-    color: white;
-}
-
-.page-games .game-section.overwatch-section {
-    background: linear-gradient(135deg, #f39c12, #e67e22);
-    color: white;
-}
-
-.page-games .game-section.valorant-section {
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
-    color: white;
-}
-
-.page-games .tag {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-/* お問い合わせページ (レッドテーマ) */
-.page-contact {
-    --primary-color: #e74c3c;
-    --secondary-color: #c0392b;
-    --accent-color: #f1948a;
-}
-
-.page-contact .header {
-    background: linear-gradient(90deg, #e74c3c, #c0392b);
-    box-shadow: 0 2px 15px rgba(231, 76, 60, 0.3);
-}
-
-.page-contact .header .logo a,
-.page-contact .nav-list a {
-    color: white;
-}
-
-.page-contact .nav-list a:hover,
-.page-contact .nav-list a.active {
-    color: #f1948a;
-    background: rgba(241, 148, 138, 0.2);
-}
-
-.page-contact .page-header {
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
-    color: white;
-}
-
-.page-contact .btn-primary {
-    background: #c0392b;
-    border-color: #c0392b;
-}
-
-.page-contact .contact-item {
-    border-left: 4px solid #e74c3c;
-    padding-left: 1rem;
-}
-
-.page-contact .form input:focus,
-.page-contact .form textarea:focus,
-.page-contact .form select:focus {
-    border-color: #e74c3c;
-    box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.2);
-}
-
-.page-contact .faq-item:hover {
-    border-left-color: #e74c3c;
-}
-
-/* 各ページ共通のアニメーション強化 */
-.page-home .hero-content,
-.page-about .profile-content,
-.page-hobby .hobby-card,
-.page-games .game-content,
-.page-contact .contact-content {
-    animation: fadeInUp 0.8s ease-out;
-}
-
+/* アニメーション */
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(50px);
     }
     to {
         opacity: 1;
@@ -857,28 +588,103 @@ a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
     }
 }
 
-/* ページ固有のホバーエフェクト */
-.page-home .info-card:hover {
-    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-    border-left: 4px solid #3498db;
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+    }
+    40% {
+        transform: translateY(-10px) translateX(-50%);
+    }
+    60% {
+        transform: translateY(-5px) translateX(-50%);
+    }
 }
 
-.page-about .academic-card:hover {
-    background: linear-gradient(135deg, #f8fff8, #e8f8e8);
-    border-left: 4px solid #27ae60;
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: rgba(255, 255, 255, 0.98);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        padding: 2rem 0;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-menu li {
+        margin: 1rem 0;
+    }
+    
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .games-grid,
+    .hobbies-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .profile-info {
+        grid-template-columns: 1fr;
+    }
 }
 
-.page-hobby .gallery-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 25px rgba(243, 156, 18, 0.3);
-}
-
-.page-games .philosophy-card:hover {
-    background: linear-gradient(135deg, #f8f4ff, #f0eaff);
-    border-left: 4px solid #8e44ad;
-}
-
-.page-contact .highlight-item:hover {
-    background: linear-gradient(135deg, #fff5f5, #fee);
-    border-left: 4px solid #e74c3c;
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .nav-container {
+        padding: 0 15px;
+    }
 }

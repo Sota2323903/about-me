@@ -3,524 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ゲーム紹介 - Souta's Student Profile</title>
-    <meta name="description" content="Soutaがプレイした感動のゲームたちをご紹介。NieR:Automata、Overwatch、VALORANTの魅力を熱く語ります！">
-    
-    <!-- Reset CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/ress/dest/ress.min.css">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
-    
-    <!-- Original CSS -->
+    <title>ゲーム - Sota</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="page-games">
-    <!-- Background Slideshow -->
-    <div class="background-slideshow">
-        <div class="background-slide active">
-            <img src="image/IMG_4918.jpeg" alt="背景1">
-        </div>
-        <div class="background-slide">
-            <img src="image/IMG_4948.jpeg" alt="背景2">
-        </div>
-        <div class="background-slide">
-            <img src="image/IMG_4980.jpeg" alt="背景3">
-        </div>
-        <div class="background-slide">
-            <img src="image/IMG_5025.jpeg" alt="背景4">
-        </div>
-        <div class="background-slide">
-            <img src="image/IMG_5026.jpeg" alt="背景5">
-        </div>
-        <div class="background-slide">
-            <img src="image/IMG_5041.jpeg" alt="背景6">
-        </div>
-        <div class="background-slide">
-            <img src="image/IMG_5103.jpeg" alt="背景7">
-        </div>
-    </div>
-
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <h1 class="logo">
-                    <a href="index.html">🎮 Souta</a>
-                </h1>
-                <nav class="nav">
-                    <ul class="nav-list">
-                        <li><a href="index.html">ホーム</a></li>
-                        <li><a href="about.html">自己紹介</a></li>
-                        <li><a href="hobby.html">趣味</a></li>
-                        <li><a href="games.html" class="active">ゲーム</a></li>
-                        <li><a href="contact.html">お問い合わせ</a></li>
-                    </ul>
-                </nav>
-                <button class="menu-toggle" id="menuToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Sota</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">ホーム</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">自己紹介</a>
+                </li>
+                <li class="nav-item">
+                    <a href="hobbies.html" class="nav-link">趣味</a>
+                </li>
+                <li class="nav-item">
+                    <a href="games.html" class="nav-link active">ゲーム</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">お問い合わせ</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <h2 class="page-title">🎮 ゲーム紹介</h2>
-            <p class="page-subtitle">人生を変えた3つのゲームたち</p>
-        </div>
-    </section>
-
-    <!-- Games Introduction -->
-    <section class="games-intro">
-        <div class="container">
-            <div class="intro-content">
-                <h3>ゲームが教えてくれたもの</h3>
-                <p>
-                    ゲームはただの娯楽ではありません。<br>
-                    美しいストーリー、戦略的思考、チームワークの大切さ、そして「生きること」への深い問いかけ。<br>
-                    ここでは私の人生に大きな影響を与えた3つのゲームをご紹介します。
-                </p>
-                <div class="game-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">3</span>
-                        <span class="stat-label">推しゲーム</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">1000+</span>
-                        <span class="stat-label">プレイ時間</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">∞</span>
-                        <span class="stat-label">感動レベル</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- NieR:Automata Section -->
-    <section class="game-section nier-section">
-        <div class="container">
-            <div class="game-content">
-                <div class="game-info">
-                    <div class="game-header">
-                        <h3 class="game-title">🤖 NieR:Automata</h3>
-                        <div class="game-tags">
-                            <span class="tag">アクションRPG</span>
-                            <span class="tag">哲学的</span>
-                            <span class="tag">感動</span>
-                            <span class="tag">神ゲー</span>
+    <main>
+        <!-- ゲーム紹介ページ -->
+        <section id="games" class="section active page-section">
+            <div class="container">
+                <h2 class="section-title">好きなゲーム</h2>
+                <div class="games-grid">
+                    <div class="game-card">
+                        <div class="game-image">
+                            <img src="image/nier-automata.jpg" alt="NieR:Automata">
                         </div>
-                    </div>
-                    
-                    <div class="game-description">
-                        <h4>🎮 どんなゲーム？</h4>
-                        <p>
-                            『NieR:Automata』は、一見すると「超スタイリッシュなロボットアクションゲーム」。だけどプレイしていくと…<br>
-                            <strong>「え、今の選択で泣いてるの自分？」</strong>ってなります。
-                        </p>
-                        
-                        <h4>🤖 主役たち</h4>
-                        <div class="character-grid">
-                            <div class="character-card">
-                                <h5>2B（トゥービー）</h5>
-                                <p>感情を表に出さないクールな戦闘アンドロイド。でも時々「それ、人間くさいよ…？」</p>
-                            </div>
-                            <div class="character-card">
-                                <h5>9S（ナインエス）</h5>
-                                <p>ちょっとおしゃべりな少年型アンドロイド。ハッキングが得意。でも心の奥には…</p>
-                            </div>
-                            <div class="character-card">
-                                <h5>A2</h5>
-                                <p>無口で無愛想な謎多き女戦士。なんでそんなに怒ってるの？</p>
+                        <div class="game-content">
+                            <h3>NieR:Automata</h3>
+                            <p>美しいストーリーと音楽、独特な世界観が魅力的なアクションRPG。哲学的なテーマと感動的な物語に深く心を動かされました。</p>
+                            <div class="game-tags">
+                                <span class="tag">アクションRPG</span>
+                                <span class="tag">ストーリー重視</span>
                             </div>
                         </div>
-                        <p>彼らは「地球を取り戻す」任務のもと、機械生命体と戦います。でも、戦いの裏には想像もしない真実と悲劇が…！</p>
-                        
-                        <h4>⚔️ アクション性</h4>
-                        <p><strong>「これ、マジでアンドロイドなの？」</strong>ってくらいの爽快バトル！</p>
-                        <ul class="game-features">
-                            <li>刀をぶんぶん振り回しながらバク宙！</li>
-                            <li>敵の攻撃をギリギリで回避してスローモーション！</li>
-                            <li>空中でも斬りまくれる！</li>
-                            <li>突然シューティングゲームみたいになる！？</li>
-                        </ul>
-                        <p>目も指も忙しいけど、めっちゃ気持ちいい。</p>
-                        
-                        <h4>🧠 でも、ただの戦闘じゃ終わらない</h4>
-                        <p>プレイしてると、こんな疑問が頭に浮かびます：</p>
-                        <ul class="philosophy-questions">
-                            <li>「機械に心はあるのか？」</li>
-                            <li>「感情って、プログラムされても"本物"なの？」</li>
-                            <li>「人間って、ほんとに上位の存在なの？」</li>
-                        </ul>
-                        <p class="game-highlight"><strong>哲学×爆発×涙＝ニーアオートマタ。</strong></p>
-                        
-                        <h4>😢 エンディングが"複数"ある</h4>
-                        <p>
-                            「えっ、終わった？」「…え、また最初から？」<br>
-                            →そう、何周もしないと"本当の物語"にたどりつけない！<br><br>
-                            でも、それが全く苦じゃない。<br>
-                            むしろ、知れば知るほど深みにハマる。<br>
-                            最終的にはコントローラーを置いたあとに、人生について考え出す。<br>
-                            …冗談じゃなくて。
-                        </p>
-                        
-                        <h4>🎵 音楽も最高</h4>
-                        <p>
-                            戦闘中も探索中も、常に美しすぎるBGMが流れています。<br>
-                            ボーカル曲は、歌詞が意味不明なようで、ちゃんと意味がある。<br>
-                            たまに泣けるくらい、音楽で感情を揺さぶってきます。
-                        </p>
-                        
-                        <div class="game-summary">
-                            <h4>🧠 まとめ：NieR:Automataとは…</h4>
-                            <p>
-                                スタイリッシュに戦いながら、<br>
-                                存在と感情と命について考えさせられる、<br>
-                                <strong>"美しく切ない哲学的アクションゲーム"</strong>です。
-                            </p>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-image">
+                            <img src="image/overwatch-logo.jpg" alt="Overwatch">
                         </div>
-                        
-                        <div class="game-links">
-                            <a href="https://store.steampowered.com/app/524220/NieRAutomata/" target="_blank" rel="noopener noreferrer" class="game-link steam">
-                                <span class="link-icon">🎮</span>
-                                <span>Steam で購入</span>
-                            </a>
-                            <a href="https://www.jp.square-enix.com/nierautomata/" target="_blank" rel="noopener noreferrer" class="game-link official">
-                                <span class="link-icon">🌐</span>
-                                <span>公式サイト</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="game-visual">
-                    <div class="game-image-with-fallback">
-                        <img src="image/nier-automata.jpg" alt="NieR:Automata - Game of the YoRHa Edition" onerror="this.parentNode.innerHTML='<div class=&quot;game-image-placeholder nier-placeholder&quot;><div class=&quot;placeholder-content&quot;><span class=&quot;placeholder-icon&quot;>🤖</span><p>NieR:Automata</p><small>美しく切ない哲学的アクションゲーム</small></div></div>'">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Overwatch Section -->
-    <section class="game-section overwatch-section">
-        <div class="container">
-            <div class="game-content reverse">
-                <div class="game-visual">
-                    <div class="game-image-with-fallback">
-                        <img src="image/overwatch-logo.jpg" alt="Overwatch - ヒーローたちの戦い" onerror="this.parentNode.innerHTML='<div class=&quot;game-image-placeholder overwatch-placeholder&quot;><div class=&quot;placeholder-content&quot;><span class=&quot;placeholder-icon&quot;>🎯</span><p>Overwatch</p><small>ヒーロー全員が主人公のド派手チームバトル</small></div></div>'">
-                    </div>
-                </div>
-                
-                <div class="game-info">
-                    <div class="game-header">
-                        <h3 class="game-title">🎯 Overwatch</h3>
-                        <div class="game-tags">
-                            <span class="tag">チーム対戦FPS</span>
-                            <span class="tag">ヒーロー</span>
-                            <span class="tag">連携</span>
-                            <span class="tag">アドレナリン</span>
-                        </div>
-                    </div>
-                    
-                    <div class="game-description">
-                        <h4>🎮 Overwatchってどんなゲーム？</h4>
-                        <p>
-                            一言でいえば、<strong>「未来のヒーローたちが、6対6（※今は5対5）で大暴れするチーム対戦アクションシューティング」！</strong>
-                        </p>
-                        
-                        <h4>🌍 世界観</h4>
-                        <p>
-                            近未来の地球。<br>
-                            ロボット（オムニック）と人類の対立や、かつて存在した「オーバーウォッチ」というヒーロー部隊の復活など、<br>
-                            アメコミみたいな濃い設定がバックにある！
-                        </p>
-                        
-                        <h4>🦸‍♂️ ヒーローは全員キャラ濃すぎ！</h4>
-                        <ul class="hero-list">
-                            <li><strong>ゲンジ</strong> - 忍者サイボーグ</li>
-                            <li><strong>ラインハルト</strong> - 重装タンクで突っ込み隊長</li>
-                            <li><strong>ファラ</strong> - 空飛ぶミサイル女</li>
-                            <li><strong>トレーサー</strong> - 時間を巻き戻す元気娘</li>
-                        </ul>
-                        <p>どのキャラも見た目・声・プレイスタイルがまるで違う！</p>
-                        
-                        <h4>⚔️ アクション性＋チーム戦略！</h4>
-                        <p>ただ撃つだけじゃなくて、</p>
-                        <div class="strategy-points">
-                            <div class="strategy-item">
-                                <span class="strategy-icon">🛡️</span>
-                                <span>味方のヒーラーを守る</span>
-                            </div>
-                            <div class="strategy-item">
-                                <span class="strategy-icon">💥</span>
-                                <span>ULT（ウルト）を合わせて一斉攻撃！</span>
-                            </div>
-                            <div class="strategy-item">
-                                <span class="strategy-icon">🏃‍♂️</span>
-                                <span>裏取りして敵をかき乱す</span>
+                        <div class="game-content">
+                            <h3>Overwatch</h3>
+                            <p>チームベースのFPSゲーム。様々なヒーローを使い分けて戦う戦略性と、仲間との連携が楽しいゲームです。</p>
+                            <div class="game-tags">
+                                <span class="tag">FPS</span>
+                                <span class="tag">チーム戦</span>
                             </div>
                         </div>
-                        <p>など、連携と役割分担が勝敗を分ける！</p>
-                        
-                        <h4>🌀 奥が深い！</h4>
-                        <p>
-                            戦略を極めるもよし、推しキャラで突っ込むもよし！<br>
-                            <strong>負けても楽しい、勝てば最高にアドレナリン出るタイプの神ゲー。</strong>
-                        </p>
-                        
-                        <div class="game-summary">
-                            <h4>📢 わかりやすくまとめると…</h4>
-                            <p>
-                                <strong>「ヒーロー全員が主人公の、ド派手・戦略系・チームバトル」！</strong><br>
-                                FPS初心者でも「推しキャラ」で始めやすく、極めるとプロ級の奥深さもあるゲームです🔥
-                            </p>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-image">
+                            <img src="image/valorant-agents.jpg" alt="Valorant">
                         </div>
-                        
-                        <div class="game-links">
-                            <a href="https://overwatch.blizzard.com/ja-jp/" target="_blank" rel="noopener noreferrer" class="game-link official">
-                                <span class="link-icon">🌐</span>
-                                <span>公式サイト</span>
-                            </a>
-                            <a href="https://playoverwatch.com/ja-jp/" target="_blank" rel="noopener noreferrer" class="game-link play">
-                                <span class="link-icon">🎯</span>
-                                <span>今すぐプレイ</span>
-                            </a>
+                        <div class="game-content">
+                            <h3>Valorant</h3>
+                            <p>戦術的なFPSゲーム。正確な射撃と戦略的な思考が求められ、チームワークの重要性を学ばせてくれるゲームです。</p>
+                            <div class="game-tags">
+                                <span class="tag">タクティカルFPS</span>
+                                <span class="tag">競技性</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- VALORANT Section -->
-    <section class="game-section valorant-section">
-        <div class="container">
-            <div class="game-content">
-                <div class="game-info">
-                    <div class="game-header">
-                        <h3 class="game-title">🔫 VALORANT</h3>
-                        <div class="game-tags">
-                            <span class="tag">タクティカルFPS</span>
-                            <span class="tag">戦略</span>
-                            <span class="tag">スキル</span>
-                            <span class="tag">ガチ</span>
-                        </div>
-                    </div>
-                    
-                    <div class="game-description">
-                        <h4>🎯 VALORANT（ヴァロラント）って何？</h4>
-                        <p>超ざっくり言うと…</p>
-                        <p class="game-catchphrase">
-                            <strong>「魔法が使えるCS:GO」です！</strong><br>
-                            （＝超ガチな銃撃戦に、キャラごとの特殊スキルが加わったタクティカルシューター）
-                        </p>
-                        
-                        <h4>🔫 基本ルール</h4>
-                        <div class="game-rules">
-                            <div class="rule-item">
-                                <span class="rule-number">5v5</span>
-                                <span class="rule-text">のチーム戦！</span>
-                            </div>
-                            <div class="rule-item">
-                                <span class="rule-icon">💣</span>
-                                <span class="rule-text">攻撃側：爆弾（スパイク）を設置して爆破成功を狙う</span>
-                            </div>
-                            <div class="rule-item">
-                                <span class="rule-icon">🛡️</span>
-                                <span class="rule-text">防衛側：スパイク設置を阻止 or 設置後に解除する</span>
-                            </div>
-                            <div class="rule-item">
-                                <span class="rule-icon">💀</span>
-                                <span class="rule-text">1ラウンド1回死んだら復活なし（ガチ）</span>
-                            </div>
-                            <div class="rule-item">
-                                <span class="rule-number">13</span>
-                                <span class="rule-text">ラウンド先取で勝利！</span>
-                            </div>
-                        </div>
-                        
-                        <h4>🎭 でもただの銃撃戦じゃない！</h4>
-                        <p>キャラ（＝エージェント）ごとに固有スキルがある！</p>
-                        <p>たとえば：</p>
-                        <div class="agent-grid">
-                            <div class="agent-card">
-                                <span class="agent-icon">🔥</span>
-                                <div class="agent-info">
-                                    <strong>フェニックス</strong>
-                                    <p>火のスキルで回復＋突っ込み型</p>
-                                </div>
-                            </div>
-                            <div class="agent-card">
-                                <span class="agent-icon">🌀</span>
-                                <div class="agent-info">
-                                    <strong>ジェット</strong>
-                                    <p>風の力で空中ダッシュ＆高機動キル</p>
-                                </div>
-                            </div>
-                            <div class="agent-card">
-                                <span class="agent-icon">👁️</span>
-                                <div class="agent-info">
-                                    <strong>ソーヴァ</strong>
-                                    <p>壁越しに敵を探知、ハンターの矢で貫通攻撃</p>
-                                </div>
-                            </div>
-                            <div class="agent-card">
-                                <span class="agent-icon">🧠</span>
-                                <div class="agent-info">
-                                    <strong>オーメン</strong>
-                                    <p>瞬間移動して裏取り、相手の視界を封じる</p>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="game-highlight"><strong>「立ち回り×スキル×エイム」</strong>の総合力が求められるのがVALORANTの醍醐味！</p>
-                        
-                        <h4>🧠 こんなゲームです</h4>
-                        <div class="valorant-features">
-                            <div class="feature-item">
-                                <h5>🎯 超戦略的！</h5>
-                                <p>一瞬の判断で試合が決まる</p>
-                            </div>
-                            <div class="feature-item">
-                                <h5>💀 めちゃシビア！</h5>
-                                <p>頭に1発入れば即死も…ある</p>
-                            </div>
-                            <div class="feature-item">
-                                <h5>🤝 仲間との連携が命！</h5>
-                                <p>「報告」「合わせ」「スキルのタイミング」全部重要</p>
-                            </div>
-                            <div class="feature-item">
-                                <h5>🔥 プロ並の駆け引きもアリ！</h5>
-                                <p>「フェイク設置」「スモーク裏抜け」「おとり作戦」など、心理戦も熱い</p>
-                            </div>
-                        </div>
-                        
-                        <h4>💡 初心者にありがちな感想</h4>
-                        <ul class="beginner-reactions">
-                            <li>「…死んだ。何が起きたかわからない」</li>
-                            <li>「撃ち合いに勝てないけど、スキルで貢献できた！」</li>
-                            <li>「これ…沼ゲー（＝ハマりすぎるゲーム）では？」</li>
-                        </ul>
-                        
-                        <div class="game-summary">
-                            <h4>🎮 VALORANTを一言で表すと…</h4>
-                            <p>
-                                <strong>"頭脳と反射神経で勝つ、スパイ映画みたいな爆弾解除ゲーム"！</strong><br><br>
-                                撃ち合いだけじゃない。<br>
-                                <strong>「どれだけ仲間と連携し、スキルを使いこなし、相手の裏をかけるか」</strong>で勝敗が決まる。
-                            </p>
-                        </div>
-                        
-                        <h4>🔥 最後にひとこと</h4>
-                        <p>
-                            VALORANTは、<strong>「1発で死ぬスリル」と「勝った時の達成感」</strong>がクセになるゲーム。<br><br>
-                            爆弾設置に向かってダッシュする仲間、<br>
-                            その横でスモークを炊いて援護する自分、<br>
-                            敵が飛び出してくる瞬間に全員の視線が交差する…<br>
-                            ──そんな映画みたいな瞬間が、1ラウンドごとにある。<br><br>
-                            <strong>「エイム力」よりも「頭と連携」がカギ。<br>
-                            FPS初心者も、作戦で活躍できる。</strong><br>
-                            VALORANT、君もやってみない？
-                        </p>
-                        
-                        <p class="final-message">
-                            🎧「ワンチャンある」って、信じたやつが勝つんだよ。
-                        </p>
-                        
-                        <div class="game-links">
-                            <a href="https://playvalorant.com/ja-jp/" target="_blank" rel="noopener noreferrer" class="game-link official">
-                                <span class="link-icon">🌐</span>
-                                <span>公式サイト</span>
-                            </a>
-                            <a href="https://playvalorant.com/ja-jp/download/" target="_blank" rel="noopener noreferrer" class="game-link download">
-                                <span class="link-icon">⬇️</span>
-                                <span>無料ダウンロード</span>
-                            </a>
-                            <a href="https://tracker.gg/valorant" target="_blank" rel="noopener noreferrer" class="game-link stats">
-                                <span class="link-icon">📊</span>
-                                <span>戦績確認</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="game-visual">
-                    <div class="game-image-with-fallback">
-                        <img src="image/valorant-agents.jpg" alt="VALORANT - 5vs5戦術的FPS" onerror="this.parentNode.innerHTML='<div class=&quot;game-image-placeholder valorant-placeholder&quot;><div class=&quot;placeholder-content&quot;><span class=&quot;placeholder-icon&quot;>🔫</span><p>VALORANT</p><small>頭脳と反射神経で勝つ爆弾解除ゲーム</small></div></div>'">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gaming Philosophy -->
-    <section class="gaming-philosophy">
-        <div class="container">
-            <h3 class="section-title">🎮 ゲームから学んだこと</h3>
-            <div class="philosophy-grid">
-                <div class="philosophy-card">
-                    <div class="philosophy-icon">🧠</div>
-                    <h4>戦略的思考</h4>
-                    <p>VALORANTとOverwatchから学んだチーム戦略と瞬間判断力。プログラミングでも活かされています。</p>
-                </div>
-                <div class="philosophy-card">
-                    <div class="philosophy-icon">❤️</div>
-                    <h4>感情と哲学</h4>
-                    <p>NieR:Automataが教えてくれた「存在意義」への問いかけ。技術者としての責任も考えるように。</p>
-                </div>
-                <div class="philosophy-card">
-                    <div class="philosophy-icon">🤝</div>
-                    <h4>チームワーク</h4>
-                    <p>オンラインゲームで身につけたコミュニケーション力。開発チームでの協力にも生きています。</p>
-                </div>
-                <div class="philosophy-card">
-                    <div class="philosophy-icon">🎯</div>
-                    <h4>集中力と継続</h4>
-                    <p>難しいボスやランクマッチで培った集中力。学習や課題にも同じ情熱で取り組んでいます。</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="game-cta">
-        <div class="container">
-            <div class="cta-content">
-                <h3>一緒にゲームしませんか？</h3>
-                <p>
-                    同じゲームをプレイしている方、ゲーム開発に興味がある方、<br>
-                    ぜひお話しましょう！VALORANTやOverwatch、一緒にプレイできたら嬉しいです。
-                </p>
-                <div class="cta-buttons">
-                    <a href="contact.html" class="btn btn-primary">お問い合わせ</a>
-                    <a href="hobby.html" class="btn btn-secondary">他の趣味も見る</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2025 Souta's Student Profile. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="contact.html">お問い合わせ</a>
-                    <a href="about.html">自己紹介</a>
-                </div>
-            </div>
+            <p>&copy; 2025 Sota. All rights reserved.</p>
         </div>
     </footer>
 
     <script src="js/main.js"></script>
 </body>
 </html>
-
