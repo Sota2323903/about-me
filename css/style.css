@@ -153,140 +153,6 @@ a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
     position: relative;
 }
 
-/* Hero Slideshow */
-.hero-slideshow {
-    position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-    height: 400px;
-    perspective: 1000px;
-}
-
-.slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transform: rotateY(90deg) scale(0.8);
-    transform-origin: center;
-    transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    backface-visibility: hidden;
-}
-
-.slide.active {
-    opacity: 1;
-    transform: rotateY(0deg) scale(1);
-    z-index: 2;
-}
-
-.slide.prev {
-    transform: rotateY(-90deg) scale(0.8);
-    opacity: 0.3;
-}
-
-.slide.next {
-    transform: rotateY(90deg) scale(0.8);
-    opacity: 0.3;
-}
-
-.slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 20px;
-    filter: brightness(1) contrast(1.1);
-    transition: filter 0.3s ease;
-}
-
-/* Slideshow Controls */
-.slideshow-controls {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 10px;
-    pointer-events: none;
-    z-index: 3;
-}
-
-.prev-btn, .next-btn {
-    background: rgba(255, 255, 255, 0.95);
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 1.4rem;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    pointer-events: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-    color: #333;
-    font-weight: bold;
-}
-
-.prev-btn:hover, .next-btn:hover {
-    background: rgba(52, 152, 219, 0.95);
-    color: white;
-    transform: scale(1.15) rotate(360deg);
-    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
-}
-
-.prev-btn:active, .next-btn:active {
-    transform: scale(0.95);
-}
-
-/* Slideshow Indicators */
-.slideshow-indicators {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 12px;
-    z-index: 3;
-}
-
-.indicator {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.6);
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    border: 2px solid rgba(255, 255, 255, 0.8);
-    position: relative;
-}
-
-.indicator.active {
-    background: rgba(52, 152, 219, 1);
-    border-color: rgba(255, 255, 255, 1);
-    transform: scale(1.3);
-    box-shadow: 0 0 15px rgba(52, 152, 219, 0.6);
-}
-
-.indicator:hover:not(.active) {
-    background: rgba(255, 255, 255, 0.9);
-    transform: scale(1.1);
-    border-color: rgba(52, 152, 219, 0.8);
-}
-
-/* アニメーション用の追加エフェクト */
-.slide.active img {
-    filter: brightness(1.05) contrast(1.1) saturate(1.1);
-}
-
-.slide:not(.active) img {
-    filter: brightness(0.8) contrast(0.9);
-}
-
 .hero-image img { border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
 
 /* ボタン */
@@ -315,6 +181,7 @@ a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
 
 /* ギャラリー・趣味 */
 .gallery-preview, .hobby-gallery, .hobbies { padding: 80px 20px; }
+.hobbies { background: rgba(255, 255, 255, 0.9); }
 .gallery-preview { background: rgba(248, 249, 250, 0.9); }
 .quick-info { background: rgba(255, 255, 255, 0.9); padding: 80px 20px; }
 .hobby-gallery { background: rgba(248, 249, 250, 0.9); }
@@ -371,6 +238,14 @@ a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
 
 /* お問い合わせ・フォーム */
 .contact-form-section, .profile, .skills, .timeline, .contact-intro, .academic-info, .future-goals, .faq, .privacy-section { padding: 80px 20px; }
+.profile { background: rgba(255, 255, 255, 0.9); }
+.timeline { background: rgba(248, 249, 250, 0.9); }
+.academic-info { background: rgba(255, 255, 255, 0.9); }
+.future-goals { background: rgba(248, 249, 250, 0.9); }
+.contact-intro { background: rgba(255, 255, 255, 0.9); }
+.contact-form-section { background: rgba(248, 249, 250, 0.9); }
+.faq { background: rgba(255, 255, 255, 0.9); }
+.privacy-section { background: rgba(248, 249, 250, 0.9); }
 .skills { background: rgba(248, 249, 250, 0.9); }
 .contact-content, .profile-content { display: grid; gap: 3rem; align-items: start; }
 .contact-content { grid-template-columns: 1fr 1fr; }
@@ -440,7 +315,7 @@ a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
 .privacy-link:hover { color: #2980b9; }
 
 /* Games Page Styles */
-.games-intro { padding: 80px 20px; background: #f8f9fa; }
+.games-intro { padding: 80px 20px; background: rgba(248, 249, 250, 0.9); }
 .game-stats { display: flex; justify-content: center; gap: 3rem; margin-top: 2rem; flex-wrap: wrap; }
 
 .game-section { padding: 80px 20px; }
@@ -554,14 +429,14 @@ a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
 .btn-text { display: inline; }
 .btn-loading { display: none; }
 
-.gaming-philosophy { padding: 80px 20px; background: #f8f9fa; }
+.gaming-philosophy { padding: 80px 20px; background: rgba(248, 249, 250, 0.9); }
 .philosophy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
 .philosophy-card { background: white; padding: 2rem; border-radius: 15px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s; }
 .philosophy-card:hover { transform: translateY(-5px); }
 .philosophy-icon { font-size: 3rem; margin-bottom: 1rem; }
 .philosophy-card h4 { color: #2c3e50; margin-bottom: 1rem; }
 
-.game-cta { padding: 80px 20px; background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%); color: white; text-align: center; }
+.game-cta { padding: 80px 20px; background: rgba(52, 152, 219, 0.9); color: white; text-align: center; }
 .cta-content h3 { font-size: 2.5rem; margin-bottom: 1rem; }
 .cta-content p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; }
 .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
@@ -634,16 +509,6 @@ a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
     .hero-subtitle, .page-subtitle { font-size: 1rem; }
     .hero-content { text-align: center; }
     .hero-image { margin-left: 0; margin-top: 2rem; }
-    .hero-slideshow { height: 300px; perspective: 800px; }
-    .slideshow-controls { padding: 0 5px; }
-    .prev-btn, .next-btn { 
-        width: 42px; 
-        height: 42px; 
-        font-size: 1.1rem; 
-    }
-    .prev-btn:hover, .next-btn:hover {
-        transform: scale(1.1) rotate(180deg);
-    }
     .hobby-card { grid-template-columns: 1fr; text-align: center; }
     .hobby-card:nth-child(even) { direction: ltr; }
     .hobby-image { order: -1; }
@@ -693,24 +558,6 @@ a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
     .hero-subtitle, .page-subtitle { font-size: 0.95rem; }
     .hero, .hobbies, .mini-game, .hobby-gallery, .contact-form-section, .skills, .timeline, .contact-intro, .academic-info, .future-goals, .faq, .privacy-section, .games-intro, .game-section, .gaming-philosophy, .game-cta { padding: 60px 10px; }
     .page-header { padding: 100px 10px 60px; }
-    .hero-slideshow { height: 250px; perspective: 600px; }
-    .slideshow-indicators { bottom: 15px; }
-    .indicator { 
-        width: 12px; 
-        height: 12px; 
-        border-width: 1px;
-    }
-    .indicator.active {
-        transform: scale(1.2);
-    }
-    .prev-btn, .next-btn { 
-        width: 38px; 
-        height: 38px; 
-        font-size: 1rem; 
-    }
-    .prev-btn:hover, .next-btn:hover {
-        transform: scale(1.05) rotate(90deg);
-    }
     .hobby-card { padding: 1.5rem; gap: 1.5rem; }
     .hobby-content h3 { font-size: 1.3rem; }
     .hobby-image img { height: 200px; }
