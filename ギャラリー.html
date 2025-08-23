@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YoRHa Unit #2025 - Gallery Archive</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/gallery-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ロード画面 -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="android-logo">
+                <div class="logo-hexagon">
+                    <div class="hexagon-inner">
+                        <span class="logo-text">OGW info</span>
+                        <span class="unit-id">#2025</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="loading-text">
+                <div class="system-message">ギャラリー アーカイブ システム起動中...</div>
+                <div class="sub-message">Gallery Archive System Initializing...</div>
+            </div>
+            
+            <div class="loading-progress">
+                <div class="progress-container">
+                    <div class="progress-bar-loading">
+                        <div class="progress-fill-loading" id="progressFill"></div>
+                    </div>
+                    <div class="progress-percentage" id="progressPercentage">0%</div>
+                </div>
+            </div>
+            
+            <div class="loading-status">
+                <div class="status-line" id="statusLine">音楽ライブラリ 初期化中...</div>
+            </div>
+            
+            <div class="loading-spinner-container">
+                <div class="android-spinner">
+                    <div class="spinner-orbit"></div>
+                    <div class="spinner-orbit"></div>
+                    <div class="spinner-core"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="matrix-bg"></div>
+    
+    <div class="container">
+        <header class="header">
+            <h1 class="title">YoRHa Unit #2025</h1>
+            <p class="subtitle">GALLERY ARCHIVE SYSTEM</p>
+            <p class="tagline">「記憶と美の保管庫」</p>
+            
+            <nav class="navigation">
+                <a href="自己紹介プロフィール.html" class="nav-link">
+                    <span class="nav-icon">🏠</span>
+                    メインプロフィール
+                </a>
+                <a href="趣味.html" class="nav-link">
+                    <span class="nav-icon">🎮</span>
+                    趣味データベース
+                </a>
+                <a href="出身地.html" class="nav-link">
+                    <span class="nav-icon">🌍</span>
+                    出身地データ
+                </a>
+                <a href="#" class="nav-link active">
+                    <span class="nav-icon">📷</span>
+                    ギャラリー
+                </a>
+                <a href="お問い合わせ.html" class="nav-link">
+                    <span class="nav-icon">📡</span>
+                    通信ターミナル
+                </a>
+            </nav>
+        </header>
+
+        <!-- ギャラリーナビゲーション -->
+        <div class="gallery-nav">
+            <button class="gallery-tab active" data-tab="music">
+                <span class="tab-icon">🎵</span>
+                音楽アーカイブ
+            </button>
+            <button class="gallery-tab" data-tab="photos">
+                <span class="tab-icon">📸</span>
+                写真コレクション
+            </button>
+        </div>
+
+        <!-- 音楽セクション -->
+        <div id="music-section" class="gallery-section active">
+            <div class="section-header">
+                <div class="header-content">
+                    <span class="section-icon">🎵</span>
+                    <h2 class="section-title">音楽データベース / MUSIC DATABASE</h2>
+                    <div class="scan-status">
+                        <div class="scan-dot"></div>
+                        <span>音楽ライブラリ解析中...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 現在再生中 -->
+            <div class="now-playing">
+                <div class="player-header">
+                    <span class="player-icon">▶️</span>
+                    <span class="player-title">現在のBGM / NOW PLAYING</span>
+                    <span class="player-status">ACTIVE</span>
+                </div>
+                <div class="current-track">
+                    <div class="track-info">
+                        <div class="track-title">Weight of the World (End of YoRHa)</div>
+                        <div class="track-artist">Keiichi Okabe feat. J'Nique Nicole</div>
+                        <div class="track-album">NieR:Automata Original Soundtrack</div>
+                    </div>
+                    <div class="track-controls">
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="68%"></div>
+                        </div>
+                        <div class="track-time">
+                            <span>03:42</span> / <span>05:28</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- お気に入り楽曲リスト -->
+            <div class="music-categories">
+                <!-- 音楽カテゴリーはJavaScriptで動的に生成されます -->
+            </div>
+
+            <!-- 音楽統計 -->
+            <div class="music-stats">
+                <div class="stats-header">
+                    <span class="stats-icon">📊</span>
+                    <h3 class="stats-title">音楽統計 / MUSIC STATISTICS</h3>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value">342</div>
+                        <div class="stat-label">総楽曲数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">28h</div>
+                        <div class="stat-label">週間再生時間</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">15</div>
+                        <div class="stat-label">お気に入りアーティスト</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">8</div>
+                        <div class="stat-label">プレイリスト数</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 写真セクション -->
+        <div id="photos-section" class="gallery-section">
+            <div class="section-header">
+                <div class="header-content">
+                    <span class="section-icon">📸</span>
+                    <h2 class="section-title">写真アーカイブ / PHOTO ARCHIVE</h2>
+                    <div class="scan-status">
+                        <div class="scan-dot"></div>
+                        <span>画像データ解析中...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 写真フィルター -->
+            <div class="photo-filters">
+                <button class="filter-btn active" data-filter="all">
+                    <span class="filter-icon">🖼️</span>
+                    すべて
+                </button>
+                <button class="filter-btn" data-filter="nature">
+                    <span class="filter-icon">🌸</span>
+                    自然
+                </button>
+                <button class="filter-btn" data-filter="architecture">
+                    <span class="filter-icon">🏛️</span>
+                    建築
+                </button>
+                <button class="filter-btn" data-filter="abstract">
+                    <span class="filter-icon">🎨</span>
+                    抽象
+                </button>
+                <button class="filter-btn" data-filter="memories">
+                    <span class="filter-icon">💭</span>
+                    思い出
+                </button>
+            </div>
+
+            <!-- 写真ギャラリー -->
+            <div class="photo-gallery">
+                <!-- 写真アイテムはJavaScriptで動的に生成されます -->
+            </div>
+
+            <!-- 写真統計 -->
+            <div class="photo-stats">
+                <div class="stats-header">
+                    <span class="stats-icon">📊</span>
+                    <h3 class="stats-title">写真統計 / PHOTO STATISTICS</h3>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value">1,247</div>
+                        <div class="stat-label">総写真数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">24</div>
+                        <div class="stat-label">お気に入り写真</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">8</div>
+                        <div class="stat-label">カテゴリー数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">156</div>
+                        <div class="stat-label">今月の撮影数</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>Gallery Archive System - Unit #2025</p>
+            <p>音楽と写真を通じて、美しい瞬間を永遠に保存します。</p>
+            <p>© SQUARE ENIX</p>
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/music-data.js"></script>
+    <script src="js/photo-data.js"></script>
+    <script src="js/gallery-script.js"></script>
+    <script src="js/gallery-loading.js"></script>
+</body>
+</html>

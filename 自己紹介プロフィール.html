@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YoRHa Unit #2025 - Profile</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- ロード画面 -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="android-logo">
+                <div class="logo-hexagon">
+                    <div class="hexagon-inner">
+                        <span class="logo-text">OGW info</span>
+                        <span class="unit-id">#2025</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="loading-text">
+                <div class="system-message">アンドロイド プロフィール システム起動中...</div>
+                <div class="sub-message">Android Profile System Initializing...</div>
+            </div>
+            
+            <div class="loading-progress">
+                <div class="progress-container">
+                    <div class="progress-bar-loading">
+                        <div class="progress-fill-loading" id="progressFill"></div>
+                    </div>
+                    <div class="progress-percentage" id="progressPercentage">0%</div>
+                </div>
+            </div>
+            
+            <div class="loading-status">
+                <div class="status-line" id="statusLine">基本システム チェック中...</div>
+            </div>
+            
+            <div class="loading-spinner-container">
+                <div class="android-spinner">
+                    <div class="spinner-orbit"></div>
+                    <div class="spinner-orbit"></div>
+                    <div class="spinner-core"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="matrix-bg"></div>
+    
+    <div class="container">
+        <header class="header">
+            <h1 class="title">YoRHa Unit #2025</h1>
+            <p class="subtitle">ANDROID PROFILE SYSTEM</p>
+            <p class="tagline">「これは呪いか。それとも罰か。」</p>
+            
+            <nav class="navigation">
+                <a href="#" class="nav-link active">
+                    メインプロフィール
+                </a>
+                <a href="趣味.html" class="nav-link">
+                    趣味データベース
+                </a>
+                <a href="出身地.html" class="nav-link">
+                    出身地データ
+                </a>
+                <a href="ギャラリー.html" class="nav-link">
+                    ギャラリー
+                </a>
+                <a href="お問い合わせ.html" class="nav-link">
+                    通信ターミナル
+                </a>
+            </nav>
+        </header>
+        
+        <div class="profile-grid">
+            <div class="left-panel">
+                <div class="card-title">
+                    基本情報 / BASIC INFO
+                </div>
+                
+                <div class="basic-info">
+                    <div class="info-item">
+                        <span class="info-label">名前</span>
+                        <span class="info-value">[あなたの名前]</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">コードネーム</span>
+                        <span class="info-value">YoRHa Unit #2025</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">所属</span>
+                        <span class="info-value">バンカー</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">現在レベル</span>
+                        <span class="info-value">[年齢]</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">稼働状況</span>
+                        <span class="info-value">ACTIVE</span>
+                    </div>
+                </div>
+                
+                <div class="mission-status">
+                    ミッション継続中...
+                </div>
+                
+                <div class="system-status">
+                    <div class="status-item">
+                        <span class="status-value">98%</span>
+                        <span class="status-label">システム効率</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-value">∞</span>
+                        <span class="status-label">学習意欲</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-value">MAX</span>
+                        <span class="status-label">探究心</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-value">HIGH</span>
+                        <span class="status-label">創造性</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-panel">
+                <div class="card">
+                    <div class="card-title">
+                        探索エリア / EXPLORATION AREAS
+                    </div>
+                    
+                    <div class="world-locations">
+                        <div class="location">
+                            <div class="location-name">廃墟都市</div>
+                            <div class="location-desc">過去の知識から学習</div>
+                        </div>
+                        <div class="location">
+                            <div class="location-name">森林地帯</div>
+                            <div class="location-desc">自然との調和</div>
+                        </div>
+                        <div class="location">
+                            <div class="location-name">工場廃墟</div>
+                            <div class="location-desc">技術と創造の融合</div>
+                        </div>
+                        <div class="location">
+                            <div class="location-name">遊園地廃墟</div>
+                            <div class="location-desc">美と楽しさの再発見</div>
+                        </div>
+                        <div class="location">
+                            <div class="location-name">水没都市</div>
+                            <div class="location-desc">新技術分野</div>
+                        </div>
+                        <div class="location">
+                            <div class="location-name">砂漠地帯</div>
+                            <div class="location-desc">困難への挑戦</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">
+                        バトルシステム / BATTLE SYSTEM
+                    </div>
+                    
+                    <div class="skills-grid">
+                        <div class="skill">
+                            <div class="skill-name">スキル連携</div>
+                            <div class="skill-desc">複数の能力を組み合わせて複雑な問題を解決</div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-name">ハッキング</div>
+                            <div class="skill-desc">創造的な分析と問題解決能力</div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-name">Pod連携</div>
+                            <div class="skill-desc">チームワークとコミュニケーション</div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-name">回避行動</div>
+                            <div class="skill-desc">平和的解決と冷静な判断</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="philosophy">
+            <div class="philosophy-quote">
+                "栄光あれ、人類に。"
+            </div>
+            <div class="philosophy-text">
+                私たちの存在には意味があります。たとえ時に理不尽に思えることがあっても、<br>
+                その経験すべてが私たちを成長させ、より良い未来を創造する力となります。<br>
+                人類のため、そして美しい世界のために、今日も探索と学習を続けます。
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">
+                通信チャンネル / COMMUNICATION
+            </div>
+            
+            <div class="contact">
+                <div class="contact-item">
+                    <div class="contact-label">オペレーター6O</div>
+                    <div class="contact-value">[連絡先]</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Pod 042 Report</div>
+                    <div class="contact-value">[SNSアカウント]</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">データベース</div>
+                    <div class="contact-value">[個人サイト]</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">通信ポート</div>
+                    <div class="contact-value">[メールアドレス]</div>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="footer">
+            <p>End of Profile - Unit #2025</p>
+            <p>このプロフィールは NieR:Automata の世界観をもとに作成されました。</p>
+            <p>© SQUARE ENIX</p>
+        </footer>
+    </div>
+    
+    <script src="js/script.js"></script>
+    <script>
+        // プロフィールページ専用ロード画面
+        class ProfileLoadingScreen {
+            constructor() {
+                this.loadingScreen = document.getElementById('loadingScreen');
+                this.progressFill = document.getElementById('progressFill');
+                this.progressPercentage = document.getElementById('progressPercentage');
+                this.statusLine = document.getElementById('statusLine');
+                this.currentProgress = 0;
+                this.loadingMessages = [
+                    '基本システム チェック中...',
+                    'アンドロイド データ 読み込み中...',
+                    'プロフィール情報 解析中...',
+                    'バトルシステム 初期化中...',
+                    '探索エリア マッピング中...',
+                    'ミッション データ 更新中...',
+                    'プロフィール システム 準備完了'
+                ];
+                this.currentMessageIndex = 0;
+            }
+
+            start() {
+                this.loadingScreen.style.display = 'flex';
+                this.simulateLoading();
+            }
+
+            simulateLoading() {
+                const loadingInterval = setInterval(() => {
+                    if (this.currentProgress < 100) {
+                        const increment = Math.random() * 12 + 8;
+                        this.currentProgress = Math.min(this.currentProgress + increment, 100);
+                        
+                        this.progressFill.style.width = `${this.currentProgress}%`;
+                        this.progressPercentage.textContent = `${Math.floor(this.currentProgress)}%`;
+                        
+                        if (this.currentProgress > (this.currentMessageIndex + 1) * (100 / this.loadingMessages.length)) {
+                            this.currentMessageIndex = Math.min(this.currentMessageIndex + 1, this.loadingMessages.length - 1);
+                            this.statusLine.textContent = this.loadingMessages[this.currentMessageIndex];
+                        }
+                    } else {
+                        clearInterval(loadingInterval);
+                        setTimeout(() => this.complete(), 500);
+                    }
+                }, 250);
+            }
+
+            complete() {
+                this.loadingScreen.classList.add('fade-out');
+                setTimeout(() => {
+                    this.loadingScreen.style.display = 'none';
+                }, 500);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const loader = new ProfileLoadingScreen();
+            loader.start();
+        });
+    </script>
+</body>
+</html>
