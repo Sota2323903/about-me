@@ -387,17 +387,13 @@ function initializeGalleryNavigation() {
     // ギャラリーアクセスボタンのアニメーション
     if (accessGalleryBtn) {
         accessGalleryBtn.addEventListener('click', function(e) {
-            e.preventDefault();
+            // 既にボタンにhrefが設定されているため追加ナビゲーションは不要
             showLoadingAnimation(this);
-            
-            setTimeout(() => {
-                window.location.href = 'ギャラリー.html';
-            }, 1500);
         });
     }
     
     // プレビューアイテムのインタラクション
-    previewItems.forEach((item, index) => {
+    previewItems.forEach((item) => {
         item.addEventListener('click', function() {
             this.style.transform = 'scale(0.95)';
             setTimeout(() => {
@@ -411,14 +407,18 @@ function initializeGalleryNavigation() {
         // ホバーエフェクトの強化
         item.addEventListener('mouseenter', function() {
             const placeholder = this.querySelector('.preview-placeholder');
-            placeholder.style.boxShadow = '0 0 25px rgba(120, 119, 198, 0.4)';
-            placeholder.style.transform = 'scale(1.1)';
+            if (placeholder) {
+                placeholder.style.boxShadow = '0 0 25px rgba(120, 119, 198, 0.4)';
+                placeholder.style.transform = 'scale(1.1)';
+            }
         });
         
         item.addEventListener('mouseleave', function() {
             const placeholder = this.querySelector('.preview-placeholder');
-            placeholder.style.boxShadow = '';
-            placeholder.style.transform = 'scale(1)';
+            if (placeholder) {
+                placeholder.style.boxShadow = '';
+                placeholder.style.transform = 'scale(1)';
+            }
         });
     });
 }

@@ -52,21 +52,23 @@
     
     <div class="container">
         <header class="header">
-            <h1 class="title">COMMUNICATION TERMINAL</h1>
+            <a href="index.html" class="title-link" style="text-decoration:none;color:inherit" aria-label="ホームへ">
+                <h1 class="title">COMMUNICATION TERMINAL</h1>
+            </a>
             <p class="subtitle">YoRHa Unit #2025 - MESSAGE SYSTEM</p>
             <p class="tagline">「全ての通信は、繋がりへの希望である。」</p>
             
             <nav class="navigation">
-                <a href="自己紹介プロフィール.html" class="nav-link">
+                <a href="profile.html" class="nav-link">
                     メインプロフィール
                 </a>
-                <a href="趣味.html" class="nav-link">
+                <a href="hobby.html" class="nav-link">
                     趣味データベース
                 </a>
-                <a href="出身地.html" class="nav-link">
+                <a href="from.html" class="nav-link">
                     出身地データ
                 </a>
-                <a href="ギャラリー.html" class="nav-link">
+                <a href="gallery.html" class="nav-link">
                     ギャラリー
                 </a>
                 <a href="#" class="nav-link active">
@@ -170,7 +172,7 @@
                             <option value="philosophy">哲学的対話 / Philosophical Discussion</option>
                             <option value="other">その他 / Other</option>
                         </select>
-                        <div class="select-arrow">▼</div>
+                        <div class="select-arrow" aria-hidden="true"></div>
                     </div>
                     
                     <div class="form-group">
@@ -206,12 +208,10 @@
                     
                     <div class="form-actions">
                         <button type="button" class="btn-secondary" id="clearForm">
-                            
                             クリア
                         </button>
                         
                         <button type="submit" class="btn-primary" id="sendBtn">
-                            
                             <span class="btn-text">送信開始</span>
                             <div class="btn-loading">
                                 <div class="loading-spinner"></div>

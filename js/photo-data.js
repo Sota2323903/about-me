@@ -171,7 +171,7 @@ function generatePhotoItem(photo) {
                 <p class="photo-description">${photo.description}</p>
                 <div class="photo-meta">
                     <span class="photo-date">${photo.date}</span>
-                    <span class="photo-location">📍 ${photo.location}</span>
+                    <span class="photo-location">Loc: ${photo.location}</span>
                     <div class="photo-tags">
                         ${tagsHtml}
                     </div>

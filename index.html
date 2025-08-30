@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>YoRHa Unit #2025 - Main Hub</title>
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+	<!-- ロード画面 -->
+	<div class="loading-screen" id="loadingScreen">
+		<div class="loading-content">
+			<div class="android-logo">
+				<div class="logo-hexagon">
+					<div class="hexagon-inner">
+						<span class="logo-text">OGW info</span>
+						<span class="unit-id">#2025</span>
+					</div>
+				</div>
+			</div>
+            
+			<div class="loading-text">
+				<div class="system-message">メインハブ システム起動中...</div>
+				<div class="sub-message">Main Hub System Initializing...</div>
+			</div>
+            
+			<div class="loading-progress">
+				<div class="progress-container">
+					<div class="progress-bar-loading">
+						<div class="progress-fill-loading" id="progressFill"></div>
+					</div>
+					<div class="progress-percentage" id="progressPercentage">0%</div>
+				</div>
+			</div>
+            
+			<div class="loading-status">
+				<div class="status-line" id="statusLine">ハブ モジュール 読み込み中...</div>
+			</div>
+            
+			<div class="loading-spinner-container">
+				<div class="android-spinner">
+					<div class="spinner-orbit"></div>
+					<div class="spinner-orbit"></div>
+					<div class="spinner-core"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="matrix-bg"></div>
+    
+	<div class="container">
+		<header class="header">
+			<h1 class="title">YoRHa Unit #2025</h1>
+			<p class="subtitle">MAIN HUB SYSTEM</p>
+			<p class="tagline">「データバンクへようこそ。アクセス先を選択してください。」</p>
+            
+			<nav class="navigation">
+				<a href="profile.html" class="nav-link">
+					メインプロフィール
+				</a>
+				<a href="hobby.html" class="nav-link">
+					趣味データベース
+				</a>
+				<a href="from.html" class="nav-link">
+					出身地データ
+				</a>
+				<a href="gallery.html" class="nav-link">
+					ギャラリー
+				</a>
+				<a href="contact.html" class="nav-link">
+					通信ターミナル
+				</a>
+			</nav>
+		</header>
+
+		<div class="mission-status">
+			メインハブ オンライン — 全モジュール正常稼働中
+		</div>
+
+		<!-- ハブカード群 -->
+		<div class="card">
+			<div class="card-title">
+				メインプロフィール / ANDROID PROFILE
+			</div>
+			<p>ユニットの基本情報、スキル、ステータス、哲学的指針を閲覧できます。</p>
+			<div style="margin-top: 16px;">
+				<a class="nav-link" href="profile.html">プロフィールへ</a>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="card-title">
+				趣味データベース / HOBBY DATABASE
+			</div>
+			<p>ゲーム、音楽、読書、創作、自然探索などの活動ログを参照できます。</p>
+			<div style="margin-top: 16px;">
+				<a class="nav-link" href="hobby.html">趣味ページへ</a>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="card-title">
+				出身地データ / ORIGIN DATABASE
+			</div>
+			<p>地理情報・文化分析・記憶アーカイブから、原点を再構築します。</p>
+			<div style="margin-top: 16px;">
+				<a class="nav-link" href="from.html">出身地ページへ</a>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="card-title">
+				ギャラリー / GALLERY ARCHIVE
+			</div>
+			<p>音楽と写真のアーカイブにアクセスし、選別・鑑賞が可能です。</p>
+			<div style="margin-top: 16px;">
+				<a class="nav-link" href="gallery.html">ギャラリーへ</a>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="card-title">
+				通信ターミナル / COMMUNICATION TERMINAL
+			</div>
+			<p>メッセージ送信、連絡手段、通信ガイドラインを利用できます。</p>
+			<div style="margin-top: 16px;">
+				<a class="nav-link" href="contact.html">お問い合わせへ</a>
+			</div>
+		</div>
+
+		<footer class="footer">
+			<p>Main Hub - Unit #2025</p>
+			<p>「知は集まり、道は拓ける。」</p>
+			<p>© SQUARE ENIX</p>
+		</footer>
+	</div>
+
+	<script src="js/script.js"></script>
+	<script>
+		// インデックス専用ロード画面
+		class IndexLoadingScreen {
+			constructor() {
+				this.loadingScreen = document.getElementById('loadingScreen');
+				this.progressFill = document.getElementById('progressFill');
+				this.progressPercentage = document.getElementById('progressPercentage');
+				this.statusLine = document.getElementById('statusLine');
+				this.currentProgress = 0;
+				this.loadingMessages = [
+					'ハブ モジュール 読み込み中...',
+					'ナビゲーション システム 初期化中...',
+					'カード UI コンポーネント 準備中...',
+					'アニメーション エンジン 同期中...',
+					'セキュリティ チェック中...',
+					'最終シーケンス 実行中...',
+					'メインハブ 準備完了'
+				];
+				this.currentMessageIndex = 0;
+			}
+
+			start() {
+				this.loadingScreen.style.display = 'flex';
+				this.simulateLoading();
+			}
+
+			simulateLoading() {
+				const loadingInterval = setInterval(() => {
+					if (this.currentProgress < 100) {
+						const increment = Math.random() * 12 + 8;
+						this.currentProgress = Math.min(this.currentProgress + increment, 100);
+
+						this.progressFill.style.width = `${this.currentProgress}%`;
+						this.progressPercentage.textContent = `${Math.floor(this.currentProgress)}%`;
+
+						if (this.currentProgress > (this.currentMessageIndex + 1) * (100 / this.loadingMessages.length)) {
+							this.currentMessageIndex = Math.min(this.currentMessageIndex + 1, this.loadingMessages.length - 1);
+							this.statusLine.textContent = this.loadingMessages[this.currentMessageIndex];
+						}
+					} else {
+						clearInterval(loadingInterval);
+						setTimeout(() => this.complete(), 500);
+					}
+				}, 250);
+			}
+
+			complete() {
+				this.loadingScreen.classList.add('fade-out');
+				setTimeout(() => {
+					this.loadingScreen.style.display = 'none';
+				}, 500);
+			}
+		}
+
+		document.addEventListener('DOMContentLoaded', function() {
+			const loader = new IndexLoadingScreen();
+			loader.start();
+		});
+	</script>
+</body>
+</html>

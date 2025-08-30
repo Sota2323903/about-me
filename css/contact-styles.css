@@ -28,13 +28,6 @@
     border-bottom: 2px solid rgba(120, 119, 198, 0.3);
 }
 
-.status-icon {
-    font-size: 2rem;
-    background: linear-gradient(45deg, #7877c6, #ffffff);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
 
 .status-title {
     font-family: 'Orbitron', monospace;
@@ -172,13 +165,6 @@
     border-bottom: 2px solid rgba(120, 119, 198, 0.3);
 }
 
-.terminal-icon {
-    font-size: 2rem;
-    background: linear-gradient(45deg, #7877c6, #ffffff);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
 
 .terminal-title {
     font-family: 'Orbitron', monospace;
@@ -226,9 +212,6 @@
     font-weight: 600;
 }
 
-.label-icon {
-    font-size: 1rem;
-}
 
 .form-input, .form-textarea {
     width: 100%;
@@ -292,9 +275,12 @@
     right: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: #7877c6;
     pointer-events: none;
-    font-family: 'Orbitron', monospace;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #7877c6; /* ▼ をCSS三角形で描画 */
 }
 
 .priority-selector {
@@ -407,9 +393,6 @@
     transform: translateY(0);
 }
 
-.btn-icon {
-    font-size: 1rem;
-}
 
 .btn-loading {
     display: none;
@@ -486,10 +469,6 @@
     border-bottom: 2px solid rgba(120, 119, 198, 0.3);
 }
 
-.guidelines-icon, .alt-icon {
-    font-size: 1.5rem;
-    color: #7877c6;
-}
 
 .guidelines-title, .alt-title {
     font-family: 'Orbitron', monospace;
@@ -533,11 +512,15 @@
 }
 
 .guideline-list li::before {
-    content: "▸";
+    content: "";
     position: absolute;
     left: 0;
-    color: #7877c6;
-    font-weight: bold;
+    top: 12px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 7px solid #7877c6; /* ▸ をCSS三角形で描画 */
 }
 
 .alt-channels {
@@ -589,6 +572,11 @@
 @keyframes blink {
     0%, 50% { opacity: 1; }
     51%, 100% { opacity: 0.3; }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* レスポンシブデザイン */
