@@ -270,6 +270,15 @@
     box-shadow: 0 0 15px rgba(120, 119, 198, 0.2);
 }
 
+/* Message Type 専用の文字色（ラベルと選択中の値） */
+.form-label[for="messageType"] {
+    color: #9c9ae1; /* アクセントの明るいトーン */
+}
+
+#messageType.form-select {
+    color: #9c9ae1;
+}
+
 .select-arrow {
     position: absolute;
     right: 15px;
