@@ -222,9 +222,7 @@ function getLocationDetails(type) {
     const details = {
         origin: {
             title: '出身地詳細データ',
-            coordinates: '35.6762°N, 139.6503°E',
             timezone: 'JST (UTC+9)',
-            elevation: '40m',
             population: '約1,400万人（首都圏）',
             characteristics: [
                 '四季の変化が明確',
@@ -235,9 +233,7 @@ function getLocationDetails(type) {
         },
         current: {
             title: '現在位置詳細データ',
-            coordinates: '35.6762°N, 139.6503°E',
             timezone: 'JST (UTC+9)',
-            elevation: '40m',
             connection: '出身地との同期率: 98.7%',
             characteristics: [
                 'リアルタイム環境監視',
@@ -289,9 +285,7 @@ function createLocationModal(details) {
             <button class="close-modal" style="background: none; border: none; color: #7877c6; font-size: 1.5rem; cursor: pointer;">×</button>
         </div>
         <div style="color: #e8e8e8; line-height: 1.6;">
-            <p><strong>座標:</strong> ${details.coordinates}</p>
             <p><strong>タイムゾーン:</strong> ${details.timezone}</p>
-            <p><strong>標高:</strong> ${details.elevation}</p>
             ${details.population ? `<p><strong>人口:</strong> ${details.population}</p>` : ''}
             ${details.connection ? `<p><strong>接続状況:</strong> ${details.connection}</p>` : ''}
             <h4 style="color: #7877c6; font-family: 'Orbitron', monospace;">特徴:</h4>

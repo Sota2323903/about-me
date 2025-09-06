@@ -59,40 +59,7 @@
     animation: scanPulse 1.5s ease-in-out infinite;
 }
 
-.coordinates-display {
-    background: rgba(120, 119, 198, 0.1);
-    border: 1px solid rgba(120, 119, 198, 0.2);
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 25px;
-}
-
-.coord-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.coord-item:last-child {
-    margin-bottom: 0;
-    border-bottom: none;
-}
-
-.coord-label {
-    font-family: 'Orbitron', monospace;
-    color: #b8b8b8;
-    font-size: 0.9rem;
-}
-
-.coord-value {
-    font-family: 'Orbitron', monospace;
-    color: #7877c6;
-    font-weight: 600;
-    font-size: 0.9rem;
-}
+/* 緯度・経度・標高の表示に関するスタイルは削除 */
 
 .location-info {
     margin-bottom: 25px;

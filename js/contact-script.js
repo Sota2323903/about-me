@@ -106,8 +106,44 @@ document.addEventListener('DOMContentLoaded', function() {
         // 送信プロセスのシミュレーション
         await simulateTransmission();
         
-        // 実際のフォーム送信処理をここに追加
-        // 例: fetch('/api/contact', { method: 'POST', body: new FormData(form) })
+        // 固定宛先にmailtoで送信（既定メーラーを起動）
+        try {
+            const to = 'KTC25A31E0003@edu.kyoto-tech.ac.jp';
+            const name = document.getElementById('senderName').value.trim();
+            const email = document.getElementById('senderEmail').value.trim();
+            const type = document.getElementById('messageType').value;
+            const priority = (form.querySelector('input[name="priority"]:checked')?.value || 'normal').toUpperCase();
+            const content = messageContent.value.trim();
+
+            const typeLabelMap = {
+                'general': 'General',
+                'collaboration': 'Collaboration',
+                'technical': 'Technical',
+                'creative': 'Creative',
+                'philosophy': 'Philosophy',
+                'other': 'Other'
+            };
+
+            const typeLabel = typeLabelMap[type] || 'Unspecified';
+
+            const subject = encodeURIComponent(`[${priority}] Message from ${name || 'Anonymous'} (${typeLabel})`);
+            const bodyLines = [
+                `Sender: ${name || 'N/A'}`,
+                `Email: ${email || 'N/A'}`,
+                `Type: ${typeLabel}`,
+                `Priority: ${priority}`,
+                '',
+                '--- Message ---',
+                content || '(no content)'
+            ];
+            const body = encodeURIComponent(bodyLines.join('\n'));
+            const mailtoUrl = `mailto:${to}?subject=${subject}&body=${body}`;
+
+            // メーラー起動（ポップアップブロックを避けるため同期クリックに近いタイミング）
+            window.location.href = mailtoUrl;
+        } catch (_) {
+            // 失敗してもフォームの成功フローは継続
+        }
         
         // 送信完了
         sendBtn.classList.remove('loading');
